@@ -10,5 +10,6 @@ public class TrainerDto {
 
     public void setName(String name) {
         this.name = name;
+
     }
 }
