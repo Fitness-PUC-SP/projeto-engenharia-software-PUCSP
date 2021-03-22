@@ -7,4 +7,5 @@ public interface TrainerService {
 
     void createTrainer(TrainerRequest request);
     TrainerResponse findTrainer(String name);
+    void addFields(String certificate);
 }

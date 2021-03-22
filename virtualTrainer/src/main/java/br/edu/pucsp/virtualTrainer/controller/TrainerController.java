@@ -22,6 +22,11 @@ public class TrainerController {
         trainerService.createTrainer(request);
     }
 
+    @PostMapping(path = "/setField")
+    void addField(@RequestBody String request){
+        trainerService.addFields(request);
+    }
+
     @GetMapping(path = "/{trainerName}")
     @ResponseBody
     TrainerResponse getTrainer(@PathVariable String trainerName){
