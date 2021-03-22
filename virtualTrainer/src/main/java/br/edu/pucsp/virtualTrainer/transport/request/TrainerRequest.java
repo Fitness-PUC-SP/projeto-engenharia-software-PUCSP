@@ -1,10 +1,15 @@
 package br.edu.pucsp.virtualTrainer.transport.request;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@ApiModel(value = "TrainerRequest", description = "Transport class for Trainer")
 public class TrainerRequest {
 
+    @ApiModelProperty(name = "name")
     @NotEmpty(message = "A Name cannot be null or empty")
     @Size(min = 3, max = 20, message = "A name should have between 3 and 20 characters")
     private String name;

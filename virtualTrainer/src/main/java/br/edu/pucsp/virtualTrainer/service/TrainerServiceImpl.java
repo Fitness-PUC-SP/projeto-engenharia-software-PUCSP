@@ -26,7 +26,7 @@ public class TrainerServiceImpl implements TrainerService {
     TrainerFieldRepository trainerFieldRepository;
 
     public TrainerServiceImpl(TrainerRepository repository, FieldRepository fieldRepository,
-                              TrainerFieldRepository trainerFieldRepository, TrainerFieldRepository trainerField2Repository){
+                              TrainerFieldRepository trainerFieldRepository){
         this.repository = repository;
         this.fieldRepository = fieldRepository;
         this.trainerFieldRepository = trainerFieldRepository;
