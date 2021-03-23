@@ -1,4 +1,4 @@
-package br.edu.pucsp.virtualTrainer;
+package br.edu.pucsp.virtualtrainer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
