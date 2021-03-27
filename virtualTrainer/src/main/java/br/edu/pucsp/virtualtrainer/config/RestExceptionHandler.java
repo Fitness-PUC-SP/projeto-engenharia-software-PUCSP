@@ -69,7 +69,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         Map<Object, String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .collect(Collectors.toMap(FieldError::getRejectedValue, DefaultMessageSourceResolvable::getDefaultMessage));
+                .collect(Collectors.toMap(FieldError::getField, DefaultMessageSourceResolvable::getDefaultMessage));
 
         log.error("Error validating request {}", errors);
         return formatResponse(errors, HttpStatus.BAD_REQUEST);
