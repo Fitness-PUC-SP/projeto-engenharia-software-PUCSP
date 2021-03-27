@@ -3,27 +3,41 @@ package br.edu.pucsp.virtualtrainer.transport.request;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @ApiModel(value = "TrainerRequest", description = "Transport class for Trainer")
 public class TrainerRequest {
 
     @ApiModelProperty(name = "name")
-    @NotEmpty(message = "A Name cannot be null or empty")
+    @NotEmpty(message = "The name cannot be null or empty")
     @Size(min = 3, max = 20, message = "A name should have between 3 and 20 characters")
     private String name;
 
+    @ApiModelProperty(name = "surname")
+    @NotEmpty(message = "The surname cannot be null or empty")
+    @Size(min = 3, max = 100, message = "A surname should have between 3 and 100 characters")
     private String surname;
 
+    @ApiModelProperty(name = "cpf")
+    @Positive(message = "Invalid CPF number")
+    //TODO create custom validator
     private Long cpf;
 
+    @ApiModelProperty(name = "email")
+    @Email(message = "This is not a valid email")
     private String email;
 
+    @ApiModelProperty(name = "cellphone")
+    @Positive(message = "Invalid cellphone number")
+    //TODO create custom validator
     private Long cellphone;
 
+    @ApiModelProperty(name = "whatsapp")
+    @Positive(message = "Invalid whatsapp number")
     private Long whatsapp;
 
+    @ApiModelProperty(name = "zoomAccount")
+    @Email(message = "This is not a valid email")
     private String zoomAccount;
 
     public String getName() {
