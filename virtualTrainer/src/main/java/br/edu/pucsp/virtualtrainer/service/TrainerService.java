@@ -1,11 +1,17 @@
 package br.edu.pucsp.virtualtrainer.service;
 
+import br.edu.pucsp.virtualtrainer.model.dto.TrainerDto;
 import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
-import br.edu.pucsp.virtualtrainer.transport.response.TrainerResponse;
+
+import java.util.List;
 
 public interface TrainerService {
 
     void createTrainer(TrainerRequest request);
-    TrainerResponse findTrainer(String name);
+    List<TrainerDto> findTrainers(String name, String surname);
+    TrainerDto findTrainer(Long trainerId);
+    List<TrainerDto> findAllTrainers();
     void addFields(String certificate);
+    void deleteTrainer(Long trainerId);
+    void updateTrainer(TrainerRequest request, Long trainerId);
 }

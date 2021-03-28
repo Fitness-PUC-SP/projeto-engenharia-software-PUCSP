@@ -1,11 +1,13 @@
 package br.edu.pucsp.virtualtrainer.config;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.convert.ConversionFailedException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,6 +63,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return formatResponse("Data not Found", HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Object> handleIntegrityViolation(DataIntegrityViolationException e, HttpServletRequest req){
+        logException(e, req);
+        String message = "Database error";
+        String cause = e.getMessage();
+        if (e.getCause() instanceof ConstraintViolationException){
+            cause = "Constraint violated";
+            message = ((ConstraintViolationException) e.getCause()).getConstraintName();
+        }
+        return formatResponse(String.join(":", cause, message), HttpStatus.BAD_REQUEST);
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -78,7 +92,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     private void logException(Exception e, HttpServletRequest req) {
         log.error("Request URI: {} - {}", req.getMethod(), req.getRequestURI());
         String queryString = req.getQueryString();
-        if(nonNull(queryString)){
+        if(nonNull(queryString)){//TODO seems to not be useful. nothing here when inserting or finding
             log.error("Query String: {}}", queryString);
         }
         if(nonNull(e)){

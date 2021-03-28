@@ -6,6 +6,10 @@ public class TrainerResponse {
 
     private TrainerDto trainer;
 
+    public TrainerResponse(TrainerDto trainer) {
+        this.trainer = trainer;
+    }
+
     public TrainerDto getTrainer() {
         return trainer;
     }
