@@ -1,13 +1,10 @@
 package br.edu.pucsp.virtualtrainer.model.entity;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
@@ -39,9 +36,6 @@ public class Student {
 
     @Column
     private boolean active;
-
-    @OneToMany(mappedBy = "studentId")
-    private Set<StudentField> fields;
 
     public Long getId() {
         return id;
@@ -105,14 +99,6 @@ public class Student {
 
     public void setZoomAccount(String zoomAccount) {
         this.zoomAccount = zoomAccount;
-    }
-
-    public Set<StudentField> getFields() {
-        return fields;
-    }
-
-    public void setFields(Set<StudentField> fields) {
-        this.fields = fields;
     }
 
     public boolean isActive() {

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.pucsp.virtualtrainer.service.StudentService;
@@ -32,17 +31,16 @@ public class StudentController {
         studentService.createStudent(request);
     }
 
-    @GetMapping(path = "/{studentName}")
-    @ResponseBody
-    public StudentResponse getStudent(@PathVariable String studentName){
-        return studentService.findStudent(studentName);
+    @ApiOperation(value = "Find a Student from the database")
+    @GetMapping(path = "/{studentId}")
+    public StudentResponse getStudent(@PathVariable Long studentId){
+        return studentService.findStudent(studentId);
     }
 
     @ApiOperation(value = "Delete a Student from the database")
-    @DeleteMapping(path = "/{studentName}")
-    @ResponseBody
-    public void deleteStudent(@PathVariable String studentName){
-        studentService.deleteStudent(studentName);
+    @DeleteMapping(path = "/{studentId}")
+    public void deleteStudent(@PathVariable Long studentId){
+        studentService.deleteStudent(studentId);
     }
 }
 
