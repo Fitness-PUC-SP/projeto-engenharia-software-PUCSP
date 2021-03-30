@@ -9,25 +9,23 @@ import { TrainerService } from "src/app/services/trainer/trainer.service";
 })
 export class TrainerComponent implements OnInit {
 
-  trainer: Trainer | undefined;
+  trainer: Trainer = {} as Trainer;
 
   constructor(private trainerService : TrainerService) { }
-
-  ngOnInit(): void {
-    this.getTrainerByName('test');
-  }
-
+  
+  ngOnInit(): void { }
+  
   getTrainerByName(name: string) {
     this.trainerService
-      .getTrainerByName(name)
-      .subscribe(trainer => this.trainer = trainer);
+    .getTrainerByName(name)
+    .subscribe(trainer => this.trainer = trainer);
   }
-
+  
   saveTrainer(trainer: Trainer) {
     this.trainerService
-      .saveTrainer(trainer)
-      .subscribe(_ => {
-        console.log('Trainer saved');
-      })
+    .saveTrainer(trainer)
+    .subscribe(_ => {
+      console.log('Trainer saved');
+    })
   }
 }

@@ -1,1 +1,38 @@
-<p>trainer works!</p>
+<h2>TRAINER</h2>
+
+<mat-form-field appearance="outline">
+    <mat-label>Nome</mat-label>
+    <input matInput required #name placeholder="Digite seu nome"/>
+    <mat-icon matSuffix></mat-icon>
+    <mat-hint>Nome sem sobrenome</mat-hint>
+    <mat-hint align="end">{{name.value?.length || 0}}/10</mat-hint>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>Sobrenome</mat-label>
+    <input matInput required #surname placeholder="Digite seu sobrenome"/>
+    <mat-icon matSuffix></mat-icon>
+    <mat-hint>Agora sim, digite seu sobrenome, rs</mat-hint>
+    <mat-hint align="end">{{surname.value?.length || 0}}/10</mat-hint>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>E-mail</mat-label>
+    <input type="email" matInput required #email placeholder="seuemail@provedor.com">
+    <mat-icon matSuffix>email</mat-icon>
+    <mat-hint>Digite um e-mail válido</mat-hint>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>CPF</mat-label>
+    <input matInput required #cpf placeholder="Digite seu CPF">
+    <mat-icon matSuffix></mat-icon>
+    <mat-hint>999.999.999-99</mat-hint>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>Celular</mat-label>
+    <input matInput required #cellphone placeholder="Digite seu melhor telefone"/>
+    <mat-icon matSuffix>phone</mat-icon>
+    <mat-hint>Número do celular com DDD</mat-hint>
+</mat-form-field>
