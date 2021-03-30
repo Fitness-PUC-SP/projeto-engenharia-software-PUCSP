@@ -16,6 +16,8 @@ public class TrainerDto {
 
     private String zoomAccount;
 
+    private boolean active;
+
     public String getName() {
         return name;
     }
@@ -71,5 +73,13 @@ public class TrainerDto {
 
     public void setZoomAccount(String zoomAccount) {
         this.zoomAccount = zoomAccount;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "CPF"))//TODO remove when database is defined
 public class Trainer {
 
     @Id()
@@ -36,6 +37,10 @@ public class Trainer {
 
     @OneToMany(mappedBy = "trainerId")
     private Set<TrainerField> fields;
+
+    public Trainer() {
+        this.active = true;
+    }
 
     public Long getId() {
         return id;
