@@ -10,7 +10,6 @@ public class StudentResponse {
         this.student = student;
     }
 
-
     public StudentDto getStudent() {
         return student;
     }

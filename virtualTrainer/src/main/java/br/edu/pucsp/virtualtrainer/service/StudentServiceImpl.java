@@ -24,7 +24,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void createStudent(StudentRequest request) {
         Student student = MAPPER.requestToEntity(request);
-        student.setActive(true);
         repository.save(student);
 
     }

@@ -8,7 +8,11 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @ApiModel(value = "StudentRequest", description = "Transport class for Student")
 public class StudentRequest {
 
@@ -41,61 +45,5 @@ public class StudentRequest {
     @ApiModelProperty(name = "zoomAccount")
     @Email(message = "This is not a valid email")
     private String zoomAccount;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public Long getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(Long cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getCellphone() {
-        return cellphone;
-    }
-
-    public void setCellphone(Long cellphone) {
-        this.cellphone = cellphone;
-    }
-
-    public Long getWhatsapp() {
-        return whatsapp;
-    }
-
-    public void setWhatsapp(Long whatsapp) {
-        this.whatsapp = whatsapp;
-    }
-
-    public String getZoomAccount() {
-        return zoomAccount;
-    }
-
-    public void setZoomAccount(String zoomAccount) {
-        this.zoomAccount = zoomAccount;
-    }
 
 }
