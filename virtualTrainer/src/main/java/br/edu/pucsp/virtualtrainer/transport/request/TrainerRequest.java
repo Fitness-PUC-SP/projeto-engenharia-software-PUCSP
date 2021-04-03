@@ -1,5 +1,7 @@
 package br.edu.pucsp.virtualtrainer.transport.request;
 
+import br.edu.pucsp.virtualtrainer.validator.Cnpj;
+import br.edu.pucsp.virtualtrainer.validator.Cpf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -21,12 +23,12 @@ public class TrainerRequest {
 
     @ApiModelProperty(name = "cpf")
     @Positive(message = "Invalid CPF number")
-    //TODO create custom validator
+    @Cpf(message = "Invalid CPF number")
     private Long cpf;
 
     @ApiModelProperty(name = "cnpj")
     @Positive(message = "Invalid CNPJ number")
-    //TODO create custom validator
+    @Cnpj(message = "Invalid CNPJ number")
     private Long cnpj;
 
     @ApiModelProperty(name = "birthdate")
