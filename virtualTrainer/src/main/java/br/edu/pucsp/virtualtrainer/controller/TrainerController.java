@@ -30,34 +30,28 @@ public class TrainerController {
     }
 
     @GetMapping(path = "/filter")
-    @ResponseBody
     public TrainerListResponse getTrainers(
-            @RequestParam(name = "name") String name,
-            @RequestParam(name = "surname") String surname){
-        return new TrainerListResponse(trainerService.findTrainers(name, surname));
+            @RequestParam(name = "name") String name){
+        return new TrainerListResponse(trainerService.findTrainers(name));
     }
 
     @GetMapping(path = "/{trainerId}")//ou CPF?
-    @ResponseBody
     public TrainerResponse getTrainer(@PathVariable Long trainerId){
         return new TrainerResponse(trainerService.findTrainer(trainerId));
     }
 
     @GetMapping
-    @ResponseBody
     public TrainerListResponse getAllTrainers(){
         return new TrainerListResponse(trainerService.findAllTrainers());
     }
 
     @PutMapping(path = "/{trainerId}")
-    @ResponseBody
     public void updateTrainer(@RequestBody @Valid TrainerRequest request,
                                          @PathVariable Long trainerId){
         trainerService.updateTrainer(request, trainerId);
     }
 
     @DeleteMapping(path = "/{trainerId}")
-    @ResponseBody
     public void deleteTrainer(@PathVariable Long trainerId){
         trainerService.deleteTrainer(trainerId);
 

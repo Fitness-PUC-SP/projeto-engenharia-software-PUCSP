@@ -1,6 +1,7 @@
 package br.edu.pucsp.virtualtrainer.model.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -12,22 +13,25 @@ public class Trainer {
     private Long id;
 
     @Column
-    private String name;
+    private String nickname;
 
     @Column
-    private String surname;
+    private String fullName;
+
+    @Column
+    private LocalDate birthdate;
 
     @Column
     private Long cpf;
+
+    @Column
+    private Long cnpj;
 
     @Column
     private String email;
 
     @Column
     private Long cellphone;
-
-    @Column
-    private Long whatsapp;
 
     @Column
     private String zoomAccount;
@@ -50,20 +54,28 @@ public class Trainer {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public Long getCpf() {
@@ -72,6 +84,14 @@ public class Trainer {
 
     public void setCpf(Long cpf) {
         this.cpf = cpf;
+    }
+
+    public Long getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(Long cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getEmail() {
@@ -88,14 +108,6 @@ public class Trainer {
 
     public void setCellphone(Long cellphone) {
         this.cellphone = cellphone;
-    }
-
-    public Long getWhatsapp() {
-        return whatsapp;
-    }
-
-    public void setWhatsapp(Long whatsapp) {
-        this.whatsapp = whatsapp;
     }
 
     public String getZoomAccount() {

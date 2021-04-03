@@ -5,7 +5,7 @@ import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper()
 public interface TrainerMapper {
     Trainer dtoToEntity(TrainerDto trainerDto);
     TrainerDto entityToDto(Trainer trainer);
