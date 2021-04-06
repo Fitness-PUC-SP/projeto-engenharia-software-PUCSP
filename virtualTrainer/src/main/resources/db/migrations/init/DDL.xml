@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Glauco Castilho" id="20210405-1">
+        <createTable tableName="Category">
+            <column autoIncrement="true" name="id" type="BIGINT" >
+                <constraints primaryKey="true" primaryKeyName="CategoryPK"/>
+            </column>
+            <column name="name" type="VARCHAR(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-2">
+        <createTable tableName="Field">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="FieldPK"/>
+            </column>
+            <column name="certificate" type="BOOLEAN"/>
+            <column name="name" type="VARCHAR(30)"/>
+            <column name="category" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-3">
+        <createTable tableName="Student">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="StudentPK"/>
+            </column>
+            <column name="active" type="BOOLEAN"/>
+            <column name="cellphone" type="BIGINT"/>
+            <column name="cpf" type="BIGINT"/>
+            <column name="email" type="VARCHAR(60)"/>
+            <column name="name" type="VARCHAR(60)"/>
+            <column name="surname" type="VARCHAR(60)"/>
+            <column name="whatsapp" type="BIGINT"/>
+            <column name="zoomAccount" type="VARCHAR(60)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-4">
+        <createTable tableName="Trainer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="TrainerPK"/>
+            </column>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="1"/>
+            <column name="birthdate" type="DATE"/>
+            <column name="cellphone" type="BIGINT"/>
+            <column name="cnpj" type="BIGINT"/>
+            <column name="cpf" type="BIGINT"/>
+            <column name="email" type="VARCHAR(60)"/>
+            <column name="fullName" type="VARCHAR(60)"/>
+            <column name="nickname" type="VARCHAR(30)"/>
+            <column name="zoomAccount" type="VARCHAR(60)"/>
+        </createTable>
+
+
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-5">
+        <createTable tableName="TrainerField">
+            <column name="fieldId" type="BIGINT"/>
+            <column name="trainerId" type="BIGINT"/>
+            <column name="certificate" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-6">
+        <addPrimaryKey columnNames="fieldId, trainerId" constraintName="TrainerFieldPK" tableName="TrainerField"/>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-7">
+        <addUniqueConstraint columnNames="cpf" tableName="Trainer"/>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-8">
+        <addForeignKeyConstraint baseColumnNames="category" baseTableName="Field" constraintName="FK_71bjxhenou93ygnt07ih5dg05" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Category"/>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-9">
+        <addForeignKeyConstraint baseColumnNames="fieldId" baseTableName="TrainerField" constraintName="FK_jfab9xch8ku4seteryuoknorl" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Field"/>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-10">
+        <addForeignKeyConstraint baseColumnNames="trainerId" baseTableName="TrainerField" constraintName="FK_kom00696l2uommrpnd5vkbs54" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Trainer"/>
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-11">
+        <addNotNullConstraint tableName="trainer" columnDataType="BOOLEAN" columnName="active" constraintName="notNull_active" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-12">
+    <addNotNullConstraint tableName="trainer" columnDataType="DATE" columnName="birthdate" constraintName="notNull_birthdate" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-13">
+        <addNotNullConstraint tableName="trainer" columnDataType="BIGINT" columnName="cellphone" constraintName="notNull_cellphone" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-14">
+        <addNotNullConstraint tableName="trainer" columnDataType="VARCHAR(60)" columnName="email" constraintName="notNull_email" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-15">
+        <addNotNullConstraint tableName="trainer" columnDataType="VARCHAR(60)" columnName="fullName" constraintName="notNull_fullName" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-16">
+        <addNotNullConstraint tableName="trainer" columnDataType="VARCHAR(30)" columnName="nickname" constraintName="notNull_nickname" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-17">
+        <addNotNullConstraint tableName="category" columnDataType="VARCHAR(30)" columnName="name" constraintName="notNull_name" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-18">
+        <addNotNullConstraint tableName="field" columnDataType="BOOLEAN" columnName="certificate" constraintName="notNull_certificate" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-19">
+        <addNotNullConstraint tableName="field" columnDataType="VARCHAR(30)" columnName="name" constraintName="notNull_name" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-20">
+        <addNotNullConstraint tableName="field" columnDataType="BIGINT" columnName="category" constraintName="notNull_category" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-21">
+        <addNotNullConstraint tableName="student" columnDataType="BOOLEAN" columnName="active" constraintName="notNull_active" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-22">
+        <addNotNullConstraint tableName="student" columnDataType="BIGINT" columnName="cellphone" constraintName="notNull_cellphone" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-23">
+        <addNotNullConstraint tableName="student" columnDataType="BIGINT" columnName="cpf" constraintName="notNull_cpf" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-24">
+        <addNotNullConstraint tableName="student" columnDataType="VARCHAR(60)" columnName="email" constraintName="notNull_email" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-25">
+        <addNotNullConstraint tableName="student" columnDataType="VARCHAR(60)" columnName="name" constraintName="notNull_name" />
+    </changeSet>
+    <changeSet author="Glauco Castilho" id="20210405-26">
+        <addNotNullConstraint tableName="student" columnDataType="VARCHAR(60)" columnName="surname" constraintName="notNull_surname" />
+    </changeSet>
+</databaseChangeLog>

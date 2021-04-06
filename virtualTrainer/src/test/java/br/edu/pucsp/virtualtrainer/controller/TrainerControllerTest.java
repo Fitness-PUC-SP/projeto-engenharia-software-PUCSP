@@ -45,7 +45,7 @@ class TrainerControllerTest extends AbstractControllerTest {
 
         TrainerResponse response = getTrainerResponse();
 
-        when(trainerService.findTrainer(name)).thenReturn(response);
+        //when(trainerService.findTrainer(name)).thenReturn(response);
 
         mvc.perform(get(url + "/" + name))
                 .andExpect(status().isOk())
@@ -54,27 +54,23 @@ class TrainerControllerTest extends AbstractControllerTest {
 
     private TrainerRequest getTrainerRequest() {
         TrainerRequest request = new TrainerRequest();
-        request.setName("Name");
-        request.setSurname("Surname");
+        /*request.setName("Name");
+        request.setSurname("Surname");*/
         request.setCpf(1234657890L);
         request.setCellphone(9999999L);
-        request.setWhatsapp(9999999L);
         request.setEmail("mail");
         request.setZoomAccount("mail");
         return request;
     }
 
     private TrainerResponse getTrainerResponse() {
-        TrainerResponse response = new TrainerResponse();
         TrainerDto trainerDto = new TrainerDto();
-        trainerDto.setName("name");
-        trainerDto.setSurname("surname");
+       /* trainerDto.setName("name");
+        trainerDto.setSurname("surname");*/
         trainerDto.setCpf(13465790L);
         trainerDto.setCellphone(97987L);
-        trainerDto.setWhatsapp(97987L);
         trainerDto.setEmail("mail");
         trainerDto.setZoomAccount("mail");
-        response.setTrainer(trainerDto);
-        return response;
+        return new TrainerResponse(trainerDto);
     }
 }
