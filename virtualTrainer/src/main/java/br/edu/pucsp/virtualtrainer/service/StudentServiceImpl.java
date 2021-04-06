@@ -48,7 +48,6 @@ public class StudentServiceImpl implements StudentService {
         student.setEmail(request.getEmail());
         student.setZoomAccount(request.getZoomAccount());
         student.setCellphone(request.getCellphone());
-        student.setWhatsapp(request.getWhatsapp());
         repository.save(student);
     }
 }
