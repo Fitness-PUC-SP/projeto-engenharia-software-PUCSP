@@ -1,36 +1,58 @@
 package br.edu.pucsp.virtualtrainer.model.dto;
 
+import java.time.LocalDate;
+
 public class TrainerDto {
 
-    private String name;
+    private String nickname;
 
-    private String surname;
+    private String fullName;
 
     private Long cpf;
+
+    private Long cnpj;
+
+    private LocalDate birthDate;
 
     private String email;
 
     private Long cellphone;
 
-    private Long whatsapp;
-
     private String zoomAccount;
 
-    public String getName() {
-        return name;
+    private boolean active;
+
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
 
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Long getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(Long cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Long getCpf() {
@@ -57,19 +79,19 @@ public class TrainerDto {
         this.cellphone = cellphone;
     }
 
-    public Long getWhatsapp() {
-        return whatsapp;
-    }
-
-    public void setWhatsapp(Long whatsapp) {
-        this.whatsapp = whatsapp;
-    }
-
     public String getZoomAccount() {
         return zoomAccount;
     }
 
     public void setZoomAccount(String zoomAccount) {
         this.zoomAccount = zoomAccount;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

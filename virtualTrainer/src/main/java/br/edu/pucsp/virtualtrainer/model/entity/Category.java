@@ -3,7 +3,7 @@ package br.edu.pucsp.virtualtrainer.model.entity;
 import javax.persistence.*;
 
 @Entity
-public class Field {
+public class Category {
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,13 +11,6 @@ public class Field {
 
     @Column(nullable = false, length = 30, unique = true)
     private String name;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "category", referencedColumnName = "id")
-    private Category category;
-
-    @Column(nullable = false)
-    private boolean certified;
 
     public Long getId() {
         return id;
@@ -33,13 +26,5 @@ public class Field {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean isCertified() {
-        return certified;
-    }
-
-    public void setCertified(boolean certified) {
-        this.certified = certified;
     }
 }

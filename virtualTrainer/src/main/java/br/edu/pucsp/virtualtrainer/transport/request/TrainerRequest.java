@@ -1,27 +1,39 @@
 package br.edu.pucsp.virtualtrainer.transport.request;
 
+import br.edu.pucsp.virtualtrainer.validator.Cnpj;
+import br.edu.pucsp.virtualtrainer.validator.Cpf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @ApiModel(value = "TrainerRequest", description = "Transport class for Trainer")
 public class TrainerRequest {
 
-    @ApiModelProperty(name = "name")
-    @NotEmpty(message = "The name cannot be null or empty")
-    @Size(min = 3, max = 20, message = "A name should have between 3 and 20 characters")
-    private String name;
+    @ApiModelProperty(name = "nickname")
+    @NotEmpty(message = "The nickname cannot be null or empty")
+    @Size(min = 3, max = 30, message = "A nickname should have between 3 and 30 characters")
+    private String nickname;
 
-    @ApiModelProperty(name = "surname")
-    @NotEmpty(message = "The surname cannot be null or empty")
-    @Size(min = 3, max = 100, message = "A surname should have between 3 and 100 characters")
-    private String surname;
+    @ApiModelProperty(name = "fullName")
+    @NotEmpty(message = "The full name cannot be null or empty")
+    @Size(min = 3, max = 60, message = "A full name should have between 3 and 60 characters")
+    private String fullName;
 
     @ApiModelProperty(name = "cpf")
     @Positive(message = "Invalid CPF number")
-    //TODO create custom validator
+    @Cpf(message = "Invalid CPF number")
     private Long cpf;
+
+    @ApiModelProperty(name = "cnpj")
+    @Positive(message = "Invalid CNPJ number")
+    @Cnpj(message = "Invalid CNPJ number")
+    private Long cnpj;
+
+    @ApiModelProperty(name = "birthdate")
+    @Past(message = "This is not a valid date of birth")
+    private LocalDate birthdate;
 
     @ApiModelProperty(name = "email")
     @Email(message = "This is not a valid email")
@@ -32,28 +44,24 @@ public class TrainerRequest {
     //TODO create custom validator
     private Long cellphone;
 
-    @ApiModelProperty(name = "whatsapp")
-    @Positive(message = "Invalid whatsapp number")
-    private Long whatsapp;
-
     @ApiModelProperty(name = "zoomAccount")
     @Email(message = "This is not a valid email")
     private String zoomAccount;
 
-    public String getName() {
-        return name;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public Long getCpf() {
@@ -62,6 +70,22 @@ public class TrainerRequest {
 
     public void setCpf(Long cpf) {
         this.cpf = cpf;
+    }
+
+    public Long getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(Long cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getEmail() {
@@ -78,14 +102,6 @@ public class TrainerRequest {
 
     public void setCellphone(Long cellphone) {
         this.cellphone = cellphone;
-    }
-
-    public Long getWhatsapp() {
-        return whatsapp;
-    }
-
-    public void setWhatsapp(Long whatsapp) {
-        this.whatsapp = whatsapp;
     }
 
     public String getZoomAccount() {
