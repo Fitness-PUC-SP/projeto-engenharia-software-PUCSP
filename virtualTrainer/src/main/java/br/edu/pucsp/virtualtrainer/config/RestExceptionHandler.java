@@ -91,10 +91,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     private void logException(Exception e, HttpServletRequest req) {
         log.error("Request URI: {} - {}", req.getMethod(), req.getRequestURI());
-        String queryString = req.getQueryString();
-        if(nonNull(queryString)){//TODO seems to not be useful. nothing here when inserting or finding
-            log.error("Query String: {}}", queryString);
-        }
         if(nonNull(e)){
             log.error("Exception message: {}", e.getMessage());
             e.printStackTrace();

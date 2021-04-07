@@ -23,42 +23,52 @@ public class TrainerController {
     }
 
     @ApiOperation(value = "Insert a trainer into the database")
-    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes =APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createTrainer(@RequestBody @Valid TrainerRequest request){
+    public void createTrainer(
+            @RequestBody @Valid TrainerRequest request){
         trainerService.createTrainer(request);
     }
 
-    @GetMapping(path = "/filter")
+    @ApiOperation(value = "Recover a trainer by name")
+    @GetMapping(path = "/name/{trainerName}")
     public TrainerListResponse getTrainers(
-            @RequestParam(name = "name") String name){
-        return new TrainerListResponse(trainerService.findTrainers(name));
+            @PathVariable String trainerName){
+        return new TrainerListResponse(trainerService.findTrainers(trainerName));
     }
 
-    @GetMapping(path = "/{trainerId}")//ou CPF?
-    public TrainerResponse getTrainer(@PathVariable Long trainerId){
+    @ApiOperation(value = "Recover a trainer by id")
+    @GetMapping(path = "/id/{trainerId}")//TODO ou CPF?
+    public TrainerResponse getTrainer(
+            @PathVariable Long trainerId){
         return new TrainerResponse(trainerService.findTrainer(trainerId));
     }
 
+    @ApiOperation(value = "Recover all available trainers")
     @GetMapping
     public TrainerListResponse getAllTrainers(){
         return new TrainerListResponse(trainerService.findAllTrainers());
     }
 
+    @ApiOperation(value = "Update a trainer's info")
     @PutMapping(path = "/{trainerId}")
-    public void updateTrainer(@RequestBody @Valid TrainerRequest request,
-                                         @PathVariable Long trainerId){
+    public void updateTrainer(
+            @RequestBody @Valid TrainerRequest request,
+            @PathVariable Long trainerId){
         trainerService.updateTrainer(request, trainerId);
     }
 
+    @ApiOperation(value = "Delete a trainer")
     @DeleteMapping(path = "/{trainerId}")
-    public void deleteTrainer(@PathVariable Long trainerId){
+    public void deleteTrainer(
+            @PathVariable Long trainerId){
         trainerService.deleteTrainer(trainerId);
-
     }
 
+    @ApiOperation(value = "Set the trainer's field")
     @PostMapping(path = "/setField", produces = APPLICATION_JSON_VALUE, consumes =APPLICATION_JSON_VALUE )
-    public void addField(@RequestBody String request){
+    public void addField(
+            @RequestBody String request){
         trainerService.addFields(request);
     }
 }

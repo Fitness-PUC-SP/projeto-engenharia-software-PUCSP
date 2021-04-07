@@ -38,7 +38,6 @@ public class TrainerServiceImpl implements TrainerService {
     @Override
     public void createTrainer(TrainerRequest request) {
         Trainer trainer = MAPPER.requestToEntity(request);
-        //TODO add CPF validation
         repository.save(trainer);
     }
 
