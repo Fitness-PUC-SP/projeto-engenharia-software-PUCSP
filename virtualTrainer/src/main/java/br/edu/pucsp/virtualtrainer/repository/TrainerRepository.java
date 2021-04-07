@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface TrainerRepository extends JpaRepository<Trainer, Long> {
 
-    @Query("SELECT t FROM Trainer t WHERE lower(t.name) like lower(:name) AND lower(t.surname) like lower(:surname)")
-    Optional<List<Trainer>> findByFullName(String name, String surname);
+    @Query("SELECT t FROM Trainer t WHERE lower(t.nickname) like lower(:nickname)")
+    Optional<List<Trainer>> findByNickname(String nickname);
 
 }

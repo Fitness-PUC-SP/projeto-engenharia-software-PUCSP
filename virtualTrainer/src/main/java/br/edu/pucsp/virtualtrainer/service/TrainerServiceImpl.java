@@ -43,9 +43,10 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
-    public List<TrainerDto> findTrainers(String name, String surname) {
-        return repository.findByFullName(name, surname)
-                .orElseThrow(() -> new DataNotFoundException(String.join(" ", name, surname)))                .stream()
+    public List<TrainerDto> findTrainers(String nickname) {
+        return repository.findByNickname(nickname)
+                .orElseThrow(() -> new DataNotFoundException(String.join(" ", nickname)))
+                .stream()
                 .filter(Trainer::isActive)
                 .map(MAPPER::entityToDto)
                 .collect(Collectors.toList());
@@ -79,10 +80,12 @@ public class TrainerServiceImpl implements TrainerService {
     public void updateTrainer(TrainerRequest request, Long trainerId) {
         Trainer trainer = repository.findById(trainerId)
                 .orElseThrow(() -> new DataNotFoundException(trainerId));
+        trainer.setNickname(request.getNickname());
+        trainer.setFullName(request.getFullName());
+        trainer.setBirthdate(request.getBirthdate());
         trainer.setEmail(request.getEmail());
         trainer.setZoomAccount(request.getZoomAccount());
         trainer.setCellphone(request.getCellphone());
-        trainer.setWhatsapp(request.getWhatsapp());
         repository.save(trainer);
     }
 

@@ -1,38 +1,41 @@
 package br.edu.pucsp.virtualtrainer.model.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "CPF"))//TODO remove when database is defined
 public class Trainer {
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String name;
+    @Column(nullable = false, length = 30)
+    private String nickname;
 
-    @Column
-    private String surname;
+    @Column(name = "full_name", nullable = false, length = 60)
+    private String fullName;
 
-    @Column
+    @Column(nullable = false)
+    private LocalDate birthdate;
+
+    @Column(unique = true)
     private Long cpf;
 
-    @Column
+    @Column(unique = true)
+    private Long cnpj;
+
+    @Column(nullable = false, length = 60)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private Long cellphone;
 
-    @Column
-    private Long whatsapp;
-
-    @Column
+    @Column(name = "zoom_account", length = 60)
     private String zoomAccount;
 
-    @Column
+    @Column(nullable = false)
     private boolean active;
 
     @OneToMany(mappedBy = "trainerId")
@@ -50,20 +53,28 @@ public class Trainer {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public Long getCpf() {
@@ -72,6 +83,14 @@ public class Trainer {
 
     public void setCpf(Long cpf) {
         this.cpf = cpf;
+    }
+
+    public Long getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(Long cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getEmail() {
@@ -88,14 +107,6 @@ public class Trainer {
 
     public void setCellphone(Long cellphone) {
         this.cellphone = cellphone;
-    }
-
-    public Long getWhatsapp() {
-        return whatsapp;
-    }
-
-    public void setWhatsapp(Long whatsapp) {
-        this.whatsapp = whatsapp;
     }
 
     public String getZoomAccount() {

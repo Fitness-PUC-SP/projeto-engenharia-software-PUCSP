@@ -6,7 +6,7 @@ import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
 import br.edu.pucsp.virtualtrainer.model.entity.Student;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
 
-@Mapper(componentModel = "spring")
+@Mapper()
 public interface StudentMapper {
     Student dtoToEntity(StudentDto studentDto);
     StudentDto entityToDto(Student student);

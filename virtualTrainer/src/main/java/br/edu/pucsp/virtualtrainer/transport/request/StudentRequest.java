@@ -11,11 +11,6 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 @ApiModel(value = "StudentRequest", description = "Transport class for Student")
 public class StudentRequest {
 
