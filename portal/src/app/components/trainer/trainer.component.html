@@ -1,38 +1,63 @@
-<h2>TRAINER</h2>
+<mat-label><mat-icon>self_improvement</mat-icon>Personal Trainer</mat-label>
 
 <mat-form-field appearance="outline">
     <mat-label>Nome</mat-label>
-    <input matInput required #name placeholder="Digite seu nome"/>
+    <input matInput maxlength="255" required #name placeholder="Digite seu nome"/>
     <mat-icon matSuffix></mat-icon>
     <mat-hint>Nome sem sobrenome</mat-hint>
-    <mat-hint align="end">{{name.value?.length || 0}}/10</mat-hint>
+    <mat-hint align="end">{{name.value?.length || 0}}/255</mat-hint>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
     <mat-label>Sobrenome</mat-label>
-    <input matInput required #surname placeholder="Digite seu sobrenome"/>
+    <input matInput maxlength="255" required #surname placeholder="Digite seu sobrenome"/>
     <mat-icon matSuffix></mat-icon>
-    <mat-hint>Agora sim, digite seu sobrenome, rs</mat-hint>
-    <mat-hint align="end">{{surname.value?.length || 0}}/10</mat-hint>
+    <mat-hint>Agora sim, digite seu sobrenome</mat-hint>
+    <mat-hint align="end">{{surname.value?.length || 0}}/255</mat-hint>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
     <mat-label>E-mail</mat-label>
-    <input type="email" matInput required #email placeholder="seuemail@provedor.com">
+    <input matInput maxlength="255" required [formControl]="emailControl" #email placeholder="seuemail@provedor.com">    
     <mat-icon matSuffix>email</mat-icon>
     <mat-hint>Digite um e-mail válido</mat-hint>
+    <mat-hint align="end">{{email.value?.length || 0}}/255</mat-hint>
+    <mat-error *ngIf="emailControl.invalid">{{getErrorMessage()}}</mat-error>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
     <mat-label>CPF</mat-label>
-    <input matInput required #cpf placeholder="Digite seu CPF">
+    <input matInput maxlength="11" required #cpf placeholder="Digite seu CPF">
     <mat-icon matSuffix></mat-icon>
     <mat-hint>999.999.999-99</mat-hint>
+    <mat-hint align="end">{{cpf.value?.length || 0}}/11</mat-hint>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
     <mat-label>Celular</mat-label>
-    <input matInput required #cellphone placeholder="Digite seu melhor telefone"/>
+    <input matInput maxlength="11" required #cellphone placeholder="Digite seu melhor telefone"/>
     <mat-icon matSuffix>phone</mat-icon>
     <mat-hint>Número do celular com DDD</mat-hint>
+    <mat-hint align="end">{{cellphone.value?.length || 0}}/11</mat-hint>
 </mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>Whatsapp</mat-label>
+    <input matInput maxlength="11" required #whatsapp placeholder="">
+    <mat-icon matSuffix></mat-icon>
+    <mat-hint></mat-hint>
+    <mat-hint align="end">{{whatsapp.value?.length || 0}}/11</mat-hint>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>Conta no Zoom</mat-label>
+    <input matInput maxlength="255" required #zoomAccount placeholder=""/>
+    <mat-icon matSuffix></mat-icon>
+    <mat-hint></mat-hint>
+    <mat-hint align="end">{{zoomAccount.value?.length || 0}}/255</mat-hint>
+</mat-form-field>
+
+<button mat-raised-button color="primary" 
+    (click)="save(name.value, surname.value, email.value, +cpf.value, +cellphone.value, +whatsapp.value, zoomAccount.value)">
+    Salvar
+</button>

@@ -12,7 +12,7 @@ import { StudentComponent } from './components/student/student.component';
 import { StudentService } from './services/student/student.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DemoMaterialModule } from './material-module';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [

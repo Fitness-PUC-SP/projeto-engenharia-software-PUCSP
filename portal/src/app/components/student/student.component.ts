@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from 'src/app/models/student/student';
+import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  student: Student | undefined;
+
+  constructor(private studentService : StudentService) { }
 
   ngOnInit(): void {
+    this.getStudentByName('test');
   }
 
+  getStudentByName(name: string) {
+    this.studentService
+      .getStudentByName(name)
+      .subscribe(_ => this.student = _);
+  }
+
+  saveStudent(student: Student) {
+    this.studentService
+      .saveStudent(student)
+      .subscribe(_ => {
+        console.log('Student saved');
+      })
+  }
 }

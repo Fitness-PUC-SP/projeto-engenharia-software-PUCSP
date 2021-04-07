@@ -28,7 +28,9 @@ export class TrainerService extends ErrorHandler {
         return this.http
             .post<Trainer>(`${this.virtualTrainerApi}/trainer`, trainer, this.httpOptions)
             .pipe(
-                tap(_ => console.log('Trainer added')),
+                tap(_ => {
+                  alert('Personal Trainer saved!');
+                }),
                 catchError(this.handleError)
             );
     }

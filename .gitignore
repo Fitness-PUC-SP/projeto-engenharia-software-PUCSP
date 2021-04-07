@@ -21,3 +21,14 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+virtualTrainer/.classpath
+virtualTrainer/.factorypath
+virtualTrainer/.project
+virtualTrainer/.settings/org.eclipse.core.resources.prefs
+virtualTrainer/.settings/org.eclipse.jdt.apt.core.prefs
+virtualTrainer/.settings/org.eclipse.jdt.core.prefs
+virtualTrainer/.settings/org.eclipse.m2e.core.prefs
+virtualTrainer/target/classes/application.properties
+virtualTrainer/target/classes/data.sql
+virtualTrainer/target/generated-sources/annotations/br/edu/pucsp/virtualtrainer/mapper/TrainerMapperImpl.java
+.vscode/launch.json
