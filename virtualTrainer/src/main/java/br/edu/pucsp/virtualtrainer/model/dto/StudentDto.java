@@ -1,17 +1,24 @@
 package br.edu.pucsp.virtualtrainer.model.dto;
 
-public class StudentDto {
-    private String name;
+import java.time.LocalDate;
 
-    private String surname;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class StudentDto {
+    private String nickname;
+
+    private String fullName;
+
+    private LocalDate birthdate;
 
     private Long cpf;
 
     private String email;
 
     private Long cellphone;
-
-    private Long whatsapp;
 
     private String zoomAccount;
 

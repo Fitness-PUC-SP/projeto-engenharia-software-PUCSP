@@ -1,5 +1,7 @@
 package br.edu.pucsp.virtualtrainer.model.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,13 @@ public class Student {
     private Long id;
 
     @Column
-    private String name;
+    private String nickname;
 
     @Column
-    private String surname;
+    private String fullName;
+
+    @Column
+    private LocalDate birthdate;
 
     @Column
     private Long cpf;
@@ -27,9 +32,6 @@ public class Student {
 
     @Column
     private Long cellphone;
-
-    @Column
-    private Long whatsapp;
 
     @Column
     private String zoomAccount;

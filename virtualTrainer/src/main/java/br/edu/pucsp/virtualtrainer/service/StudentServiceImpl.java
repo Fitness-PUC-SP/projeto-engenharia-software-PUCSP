@@ -38,17 +38,16 @@ public class StudentServiceImpl implements StudentService {
     public void deleteStudent(Long id) {
 
         Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
-        //student.setActive(false);
+        student.setActive(false);
         repository.save(student);
     }
 
     @Override
     public void updateStudent(StudentRequest request, Long id) {
         Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
-        /*student.setEmail(request.getEmail());
+        student.setEmail(request.getEmail());
         student.setZoomAccount(request.getZoomAccount());
         student.setCellphone(request.getCellphone());
-        student.setWhatsapp(request.getWhatsapp());*/
         repository.save(student);
     }
 }
