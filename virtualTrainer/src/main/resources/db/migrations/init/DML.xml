@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet author="Glauco Castilho" id="20210405-27">
+    <changeSet author="Glauco Castilho" id="20210405-15">
         <insert  schemaName="virtual_trainer"
                  tableName="category">
             <column  name="name"  value="Bem Estar"/>
@@ -19,23 +19,23 @@
         </insert>
     </changeSet>
 
-    <changeSet author="Glauco Castilho" id="20210405-28">
+    <changeSet author="Glauco Castilho" id="20210405-16">
         <insert  schemaName="virtual_trainer"
                  tableName="field">
             <column  name="name"  value="Nutrição"/>
-            <column  name="certificate"  valueBoolean='false'/>
+            <column  name="certified"  valueBoolean='false'/>
             <column  name="category"  value="3"/>
         </insert>
         <insert  schemaName="virtual_trainer"
                  tableName="field">
             <column  name="name"  value="Yoga"/>
-            <column  name="certificate"  valueBoolean='false'/>
+            <column  name="certified"  valueBoolean='false'/>
             <column  name="category"  value="1"/>
         </insert>
         <insert  schemaName="virtual_trainer"
                  tableName="field">
             <column  name="name"  value="Treino"/>
-            <column  name="certificate"  valueBoolean='true'/>
+            <column  name="certified"  valueBoolean='true'/>
             <column  name="category"  value="2"/>
         </insert>
     </changeSet>

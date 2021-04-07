@@ -9,15 +9,15 @@ public class Field {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false, length = 30, unique = true)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "category", referencedColumnName = "id")
     private Category category;
 
-    @Column
-    private boolean certificate;
+    @Column(nullable = false)
+    private boolean certified;
 
     public Long getId() {
         return id;
@@ -35,11 +35,11 @@ public class Field {
         this.name = name;
     }
 
-    public boolean isCertificate() {
-        return certificate;
+    public boolean isCertified() {
+        return certified;
     }
 
-    public void setCertificate(boolean certificate) {
-        this.certificate = certificate;
+    public void setCertified(boolean certified) {
+        this.certified = certified;
     }
 }

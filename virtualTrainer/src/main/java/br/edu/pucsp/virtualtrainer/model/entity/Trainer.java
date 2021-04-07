@@ -5,38 +5,37 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "CPF"))//TODO remove when database is defined
 public class Trainer {
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false, length = 30)
     private String nickname;
 
-    @Column
+    @Column(name = "full_name", nullable = false, length = 60)
     private String fullName;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate birthdate;
 
-    @Column
+    @Column(unique = true)
     private Long cpf;
 
-    @Column
+    @Column(unique = true)
     private Long cnpj;
 
-    @Column
+    @Column(nullable = false, length = 60)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private Long cellphone;
 
-    @Column
+    @Column(name = "zoom_account", length = 60)
     private String zoomAccount;
 
-    @Column
+    @Column(nullable = false)
     private boolean active;
 
     @OneToMany(mappedBy = "trainerId")

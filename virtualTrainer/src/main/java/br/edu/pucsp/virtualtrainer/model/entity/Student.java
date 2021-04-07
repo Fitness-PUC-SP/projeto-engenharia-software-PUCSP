@@ -15,28 +15,28 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false, length = 30)
     private String nickname;
 
-    @Column
+    @Column(nullable = false, length = 60, name = "full_name")
     private String fullName;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate birthdate;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private Long cpf;
 
-    @Column
+    @Column(nullable = false, length = 60)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private Long cellphone;
 
-    @Column
+    @Column(name = "zoom_account", length = 60)
     private String zoomAccount;
 
-    @Column
+    @Column(nullable = false)
     private boolean active;
 
     public Student() {

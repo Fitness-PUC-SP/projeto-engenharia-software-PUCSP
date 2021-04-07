@@ -4,6 +4,10 @@ import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 class TrainerRepositoryTest extends AbstractRepositoryTest<TrainerRepository, Trainer> {
 
     @Test
@@ -23,9 +27,9 @@ class TrainerRepositoryTest extends AbstractRepositoryTest<TrainerRepository, Tr
         Trainer trainer = buildEntity();
         repository.save(trainer);
 
-      /*  Trainer result = repository.findByName(trainer.getName());
-        Assertions.assertEquals(trainer.getName(), result.getName());
-    */}
+        Optional<List<Trainer>> result = repository.findByNickname(trainer.getNickname());
+        Assertions.assertTrue(result.isPresent());
+    }
 
 
     @Override
@@ -34,6 +38,8 @@ class TrainerRepositoryTest extends AbstractRepositoryTest<TrainerRepository, Tr
         trainer.setNickname("Rick");
         trainer.setFullName("Ricky Martin");
         trainer.setEmail("Mail");
+        trainer.setBirthdate(LocalDate.MIN);
+        trainer.setCellphone(123L);
         return trainer;
     }
 }

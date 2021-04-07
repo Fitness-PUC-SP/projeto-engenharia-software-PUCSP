@@ -3,6 +3,7 @@ package br.edu.pucsp.virtualtrainer.model.entity;
 import javax.persistence.*;
 
 @Entity @IdClass(value = TrainerFieldId.class)
+@Table(name = "trainer_field")
 public class TrainerField {
 
     @Id
@@ -16,6 +17,7 @@ public class TrainerField {
     private Field fieldId;
 
     @Column
+    @Lob
     private String certificate;
 
     public TrainerField() {
