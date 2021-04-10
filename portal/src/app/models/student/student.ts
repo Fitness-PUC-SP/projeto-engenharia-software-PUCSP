@@ -1,9 +1,8 @@
-export interface Trainer {
+export interface Student {
     nickname: string;
     fullName: string;
-    cpf: number;
-    cnpj: number;
     birthdate: string;
+    cpf: number;
     email: string;
     cellphone: number;
     zoomAccount: string;
