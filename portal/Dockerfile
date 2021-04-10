@@ -7,7 +7,7 @@ COPY . .
 RUN ng build --prod
 
 FROM nginx:alpine
-COPY --from=angular app/dist/site /usr/share/nginx/html
+COPY --from=angular app/dist/portal /usr/share/nginx/html
 
 # FROM httpd:alpine
 #
