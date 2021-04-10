@@ -1,13 +1,17 @@
 FROM node:latest as angular
-WORKDIR /app
-COPY package.json /app
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
 RUN npm install @angular/cli -g  --silent
 RUN npm install --silent
 COPY . .
 RUN ng build --prod
 
+CMD ng serve
+
 FROM nginx:alpine
-COPY --from=angular app/dist/portal /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=angular /usr/src/app/dist/portal /usr/share/nginx/html
+#CMD ["nginx", "-g", "daemon off;"]
 
 # FROM httpd:alpine
 #
