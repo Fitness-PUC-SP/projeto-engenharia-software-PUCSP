@@ -1,19 +1,19 @@
-<!-- <mat-label><mat-icon>person</mat-icon>Aluno</mat-label>
+<mat-label><mat-icon>person</mat-icon>Aluno</mat-label>
 
 <mat-form-field appearance="outline">
     <mat-label>Apelido</mat-label>
-    <input matInput maxlength="255" required #name placeholder="Digite seu nome"/>
+    <input matInput maxlength="30" required #nickname placeholder="Como quer ser chamado?"/>
     <mat-icon matSuffix></mat-icon>
-    <mat-hint>Nome sem sobrenome</mat-hint>
-    <mat-hint align="end">{{name.value?.length || 0}}/255</mat-hint>
+    <mat-hint></mat-hint>
+    <mat-hint align="end">{{nickname.value?.length || 0}}/30</mat-hint>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
-    <mat-label>Sobrenome</mat-label>
-    <input matInput maxlength="255" required #surname placeholder="Digite seu sobrenome"/>
+    <mat-label>Nome completo</mat-label>
+    <input matInput maxlength="60" required #fullName placeholder="Digite seu nome completo"/>
     <mat-icon matSuffix></mat-icon>
-    <mat-hint>Agora sim, digite seu sobrenome</mat-hint>
-    <mat-hint align="end">{{surname.value?.length || 0}}/255</mat-hint>
+    <mat-hint></mat-hint>
+    <mat-hint align="end">{{fullName.value?.length || 0}}/60</mat-hint>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
@@ -23,6 +23,12 @@
     <mat-hint>Digite um e-mail válido</mat-hint>
     <mat-hint align="end">{{email.value?.length || 0}}/255</mat-hint>
     <mat-error *ngIf="emailControl.invalid">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>Dt niver</mat-label>
+    <input matInput maxlength="255" required #birthdate>    
+    <mat-icon matSuffix>date</mat-icon>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
@@ -41,4 +47,15 @@
     <mat-hint align="end">{{cellphone.value?.length || 0}}/11</mat-hint>
 </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="save(name.value, surname.value, email.value, +cpf.value, +cellphone.value)">Salvar</button> -->
+<mat-form-field appearance="outline">
+    <mat-label>Conta no Zoom</mat-label>
+    <input matInput maxlength="60" required #zoomAccount placeholder=""/>
+    <mat-icon matSuffix></mat-icon>
+    <mat-hint></mat-hint>
+    <mat-hint align="end">{{zoomAccount.value?.length || 0}}/60</mat-hint>
+</mat-form-field>
+
+<button mat-raised-button color="primary" 
+    (click)="save(nickname.value, fullName.value, birthdate.value, email.value, +cpf.value, +cellphone.value, zoomAccount.value)">
+    Salvar
+</button>

@@ -10,10 +10,12 @@ import { ErrorHandler } from "src/app/utils/error-handler.utils";
 })
 
 export class StudentService extends ErrorHandler {
-  private virtualStudentApi = "http://localhost:8080/virtual-student";
+  private baseApi = "http://localhost:8080/virtual-trainer";
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type:': 'application/json'})
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
   };
 
   constructor(private http: HttpClient) { 
@@ -21,13 +23,13 @@ export class StudentService extends ErrorHandler {
   }
 
   getStudentByName(name: string): Observable<any> {
-    const url = `${this.virtualStudentApi}/Student/${name}`;
+    const url = `${this.baseApi}/student/${name}`;
     return this.http.get(url);
   }
 
   saveStudent(student: Student): Observable<Student> {
     return this.http
-      .post<Student>(`${this.virtualStudentApi}/Student`, student, this.httpOptions)
+      .post<Student>(`${this.baseApi}/student`, student, this.httpOptions)
       .pipe(
         tap(_ => {
             alert('Student saved!');

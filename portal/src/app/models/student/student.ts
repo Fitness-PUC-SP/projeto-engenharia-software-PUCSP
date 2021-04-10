@@ -1,7 +1,7 @@
 export interface Student {
     nickname: string;
-    fullName: string
-    birthdate: Date;
+    fullName: string;
+    birthdate: string;
     cpf: number;
     email: string;
     cellphone: number;

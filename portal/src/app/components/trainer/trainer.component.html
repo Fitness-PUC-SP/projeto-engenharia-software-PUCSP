@@ -1,19 +1,19 @@
 <mat-label><mat-icon>self_improvement</mat-icon>Personal Trainer</mat-label>
 
 <mat-form-field appearance="outline">
-    <mat-label>Nome</mat-label>
-    <input matInput maxlength="255" required #name placeholder="Digite seu nome"/>
+    <mat-label>Apelido</mat-label>
+    <input matInput maxlength="30" required #nickname placeholder="Como quer ser chamado?"/>
     <mat-icon matSuffix></mat-icon>
-    <mat-hint>Nome sem sobrenome</mat-hint>
-    <mat-hint align="end">{{name.value?.length || 0}}/255</mat-hint>
+    <mat-hint></mat-hint>
+    <mat-hint align="end">{{nickname.value?.length || 0}}/30</mat-hint>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
-    <mat-label>Sobrenome</mat-label>
-    <input matInput maxlength="255" required #surname placeholder="Digite seu sobrenome"/>
+    <mat-label>Nome completo</mat-label>
+    <input matInput maxlength="60" required #fullName placeholder="Digite seu nome completo"/>
     <mat-icon matSuffix></mat-icon>
-    <mat-hint>Agora sim, digite seu sobrenome</mat-hint>
-    <mat-hint align="end">{{surname.value?.length || 0}}/255</mat-hint>
+    <mat-hint></mat-hint>
+    <mat-hint align="end">{{fullName.value?.length || 0}}/60</mat-hint>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
@@ -26,11 +26,25 @@
 </mat-form-field>
 
 <mat-form-field appearance="outline">
+    <mat-label>Dt niver</mat-label>
+    <input matInput maxlength="255" required #birthdate>    
+    <mat-icon matSuffix>date</mat-icon>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
     <mat-label>CPF</mat-label>
     <input matInput maxlength="11" required #cpf placeholder="Digite seu CPF">
     <mat-icon matSuffix></mat-icon>
     <mat-hint>999.999.999-99</mat-hint>
     <mat-hint align="end">{{cpf.value?.length || 0}}/11</mat-hint>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>CNPJ</mat-label>
+    <input matInput maxlength="12" required #cnpj placeholder="Digite seu CNPJ">
+    <mat-icon matSuffix></mat-icon>
+    <mat-hint></mat-hint>
+    <mat-hint align="end">{{cnpj.value?.length || 0}}/12</mat-hint>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
@@ -42,22 +56,14 @@
 </mat-form-field>
 
 <mat-form-field appearance="outline">
-    <mat-label>Whatsapp</mat-label>
-    <input matInput maxlength="11" required #whatsapp placeholder="">
-    <mat-icon matSuffix></mat-icon>
-    <mat-hint></mat-hint>
-    <mat-hint align="end">{{whatsapp.value?.length || 0}}/11</mat-hint>
-</mat-form-field>
-
-<mat-form-field appearance="outline">
     <mat-label>Conta no Zoom</mat-label>
-    <input matInput maxlength="255" required #zoomAccount placeholder=""/>
+    <input matInput maxlength="60" required #zoomAccount placeholder=""/>
     <mat-icon matSuffix></mat-icon>
     <mat-hint></mat-hint>
-    <mat-hint align="end">{{zoomAccount.value?.length || 0}}/255</mat-hint>
+    <mat-hint align="end">{{zoomAccount.value?.length || 0}}/60</mat-hint>
 </mat-form-field>
 
 <button mat-raised-button color="primary" 
-    (click)="save(name.value, surname.value, email.value, +cpf.value, +cellphone.value, +whatsapp.value, zoomAccount.value)">
+    (click)="save(nickname.value, fullName.value, birthdate.value, email.value, +cpf.value, +cnpj.value, +cellphone.value, zoomAccount.value)">
     Salvar
 </button>

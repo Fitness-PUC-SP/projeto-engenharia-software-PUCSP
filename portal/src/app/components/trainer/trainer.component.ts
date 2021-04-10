@@ -10,12 +10,22 @@ import { TrainerService } from "src/app/services/trainer/trainer.service";
 })
 export class TrainerComponent implements OnInit {
 
+  trainers = [];
   trainer: Trainer = {} as Trainer;
   emailControl = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private trainerService : TrainerService) { }
   
   ngOnInit(): void { }
+  
+  getAllTrainers() {
+    this.trainerService
+      .getAllTrainers()
+      .subscribe(trainers => { 
+        this.trainers = trainers;
+        console.log(trainers);
+      });
+  }
   
   getTrainerByName(name: string) {
     this.trainerService
@@ -31,14 +41,15 @@ export class TrainerComponent implements OnInit {
       });
   }
 
-  save(name: string, surname: string, email: string, cpf: number, cellphone: number, whatsapp: number, zoomAccount: string) {
+  save(nickname: string, fullname: string, birthdate: string, email: string, cpf: number, cnpj: number, cellphone: number, zoomAccount: string) {
     const trainer = {} as Trainer;
-    trainer.name = name;
-    trainer.surname = surname;
+    trainer.nickname = nickname;
+    trainer.fullName = fullname;
+    trainer.birthdate = birthdate;
     trainer.email = email;
     trainer.cpf = cpf;
+    trainer.cnpj = cnpj;
     trainer.cellphone = cellphone;
-    trainer.whatsapp = whatsapp;
     trainer.zoomAccount = zoomAccount;
 
     this.saveTrainer(trainer);

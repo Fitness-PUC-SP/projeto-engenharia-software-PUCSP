@@ -1,9 +1,11 @@
 export interface Trainer {
-    name: string;
-    surname: string;
-    email: string;
+    nickname: string;
+    fullName: string;
     cpf: number;
+    cnpj: number;
+    birthdate: string;
+    email: string;
     cellphone: number;
-    whatsapp: number;
     zoomAccount: string;
+    active: boolean;
 }

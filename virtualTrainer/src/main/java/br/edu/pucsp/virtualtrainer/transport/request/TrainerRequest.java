@@ -23,12 +23,12 @@ public class TrainerRequest {
 
     @ApiModelProperty(name = "cpf")
     @Positive(message = "Invalid CPF number")
-    @Cpf(message = "Invalid CPF number")
+    // @Cpf(message = "Invalid CPF number")
     private Long cpf;
 
     @ApiModelProperty(name = "cnpj")
     @Positive(message = "Invalid CNPJ number")
-    @Cnpj(message = "Invalid CNPJ number")
+    // @Cnpj(message = "Invalid CNPJ number")
     private Long cnpj;
 
     @ApiModelProperty(name = "birthdate")
