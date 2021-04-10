@@ -17,10 +17,10 @@ spec:
       containers:
         - name: server
           image: gcr.io/kubernetsalura/portal:v1
-          restartPolicy: Always
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
+        restartPolicy: Always
 #          readinessProbe:
 #            initialDelaySeconds: 10
 #            httpGet:
