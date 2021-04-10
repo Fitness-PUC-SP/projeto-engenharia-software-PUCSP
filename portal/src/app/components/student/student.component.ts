@@ -12,7 +12,13 @@ export class StudentComponent implements OnInit {
 
   students = [];
   student: Student = {} as Student;
-  emailControl = new FormControl('', [Validators.required, Validators.email]);  
+  nicknameControl = new FormControl('', [Validators.required, Validators.maxLength(30)]);
+  fullNameControl = new FormControl('', [Validators.required, Validators.maxLength(60)]);
+  emailControl = new FormControl('', [Validators.required, Validators.email, Validators.maxLength(60)]);
+  birthdateControl = new FormControl('', [Validators.required]);
+  cpfControl = new FormControl('', [Validators.required, Validators.maxLength(11)]);
+  cellphoneControl = new FormControl('', [Validators.required, Validators.maxLength(11)]);
+  zoomAccountControl = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private studentService : StudentService) { }
 
@@ -45,11 +51,58 @@ export class StudentComponent implements OnInit {
     this.saveStudent(student);
   }
 
-  getErrorMessage() {
-    if (this.emailControl.hasError('required')) {
-      return 'Por favor insira um e-mail válido';
-    }
+  getEmailErrorMessages() {
+    return `
+      ${this.getRequiredErrorMessage(this.emailControl, 'e-mail')} / 
+      ${this.getEmailValidatorMessage(this.emailControl, 'e-mail')}
+    `;
+  }
 
-    return this.emailControl.hasError('email') ? 'E-mail inválido' : '';
+  getNicknameErrorMessages() {
+    return `
+      ${this.getRequiredErrorMessage(this.nicknameControl, 'apelido')}
+    `;
+  }
+
+  getFullNameErrorMessages() {
+    return `
+      ${this.getRequiredErrorMessage(this.fullNameControl, 'nome completo')}
+    `;
+  }
+
+  getBirthdateErrorMessages() {
+    return `
+      ${this.getRequiredErrorMessage(this.birthdateControl, 'data de nascimento')}
+    `;
+  }
+
+  getCpfErrorMessages() {
+    return `
+      ${this.getRequiredErrorMessage(this.cpfControl, 'CPF')}
+    `;
+  }
+
+  getCellphoneErrorMessages() {
+    return `
+      ${this.getRequiredErrorMessage(this.cellphoneControl, 'celular')}
+    `;
+  }
+
+  getZoomAccountErrorMessages() {
+    return `
+      ${this.getRequiredErrorMessage(this.zoomAccountControl, 'conta do Zoom')} / 
+      ${this.getEmailValidatorMessage(this.zoomAccountControl, 'conta do Zoom')}
+    `;
+  }
+
+
+
+  
+  getRequiredErrorMessage(formControl: FormControl, formControlName: string) {
+    return formControl.hasError('required') ? `Por favor insira um(a) ${formControlName} válido(a)'` : '';
+  }
+
+  getEmailValidatorMessage(formControl: FormControl, formControlName: string) {
+    return formControl.hasError('email') ? `${formControlName} inválido(a)` : '';
   }
 }
