@@ -3,8 +3,11 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install @angular/cli -g  --silent
 RUN npm install --silent
-# COPY . .
-# RUN ng build
+COPY . .
+RUN ng build --prod
+
+FROM nginx:alpine
+COPY --from=angular app/dist/site /usr/share/nginx/html
 
 # FROM httpd:alpine
 #
