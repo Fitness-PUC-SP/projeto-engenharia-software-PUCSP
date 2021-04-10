@@ -33,4 +33,4 @@ RUN npm install --silent
 #
 # RUN find /usr/local/apache2/htdocs/ -mindepth 1 -type d -exec chmod +x {} \;
 
-RUN apk --no-cache add curl
+# RUN apk --no-cache add curl
