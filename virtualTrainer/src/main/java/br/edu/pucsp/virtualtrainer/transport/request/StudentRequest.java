@@ -27,7 +27,7 @@ public class StudentRequest {
 
     @ApiModelProperty(name = "cpf")
     @Positive(message = "Invalid CPF number")
-    // @Cpf(message = "Invalid CPF number")
+    @Cpf(message = "Invalid CPF number")
     private Long cpf;
 
     @ApiModelProperty(name = "email")

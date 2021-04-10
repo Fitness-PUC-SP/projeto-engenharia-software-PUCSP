@@ -11,10 +11,10 @@
 
 <mat-form-field appearance="outline">
     <mat-label>Nome completo</mat-label>
-    <input matInput maxlength="60" required [formControl]="fullNameControl" #fullName placeholder="Digite seu nome completo"/>
+    <input matInput maxlength="255" required [formControl]="fullNameControl" #fullName placeholder="Digite seu nome completo"/>
     <mat-icon matSuffix></mat-icon>
     <mat-hint></mat-hint>
-    <mat-hint align="end">{{fullName.value?.length || 0}}/60</mat-hint>
+    <mat-hint align="end">{{fullName.value?.length || 0}}/255</mat-hint>
     <mat-error *ngIf="fullNameControl.invalid">{{getFullNameErrorMessages()}}</mat-error>
 </mat-form-field>
 
@@ -54,10 +54,10 @@
 
 <mat-form-field appearance="outline">
     <mat-label>Conta no Zoom</mat-label>
-    <input matInput maxlength="60" required [formControl]="zoomAccountControl" #zoomAccount placeholder=""/>
+    <input matInput maxlength="255" [formControl]="zoomAccountControl" #zoomAccount placeholder=""/>
     <mat-icon matSuffix></mat-icon>
     <mat-hint></mat-hint>
-    <mat-hint align="end">{{zoomAccount.value?.length || 0}}/60</mat-hint>
+    <mat-hint align="end">{{zoomAccount.value?.length || 0}}/255</mat-hint>
     <mat-error *ngIf="zoomAccountControl.invalid">{{getZoomAccountErrorMessages()}}</mat-error>
 </mat-form-field>
 
