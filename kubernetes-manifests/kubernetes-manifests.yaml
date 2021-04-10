@@ -16,7 +16,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: gcr.io/$PROJECT_ID/portal:v1
+          image: gcr.io/kubernetsalura/portal:v1
           ports:
           - containerPort: 8080
           readinessProbe:
