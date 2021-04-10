@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: frontend-gateway
+  name: portal-gateway
 spec:
   selector:
     istio: ingressgateway # use Istio default gateway implementation
@@ -16,12 +16,12 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: frontend-ingress
+  name: portal-ingress
 spec:
   hosts:
   - "*"
   gateways:
-  - frontend-gateway
+  - portal-gateway
   http:
   - route:
     - destination:
@@ -65,14 +65,14 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: frontend
+  name: portal
 spec:
   hosts:
-  - "frontend.default.svc.cluster.local"
+  - "portal.default.svc.cluster.local"
   http:
   - route:
     - destination:
-        host: frontend
+        host: portal
         port:
           number: 80
 ---

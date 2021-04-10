@@ -16,7 +16,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: gcr.io/google-samples/projeto-engenharia-software-PUCSP/portal:v0.2.2
+          image: gcr.io/kubernetsalura/projeto-engenharia-software-PUCSP/portal
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -53,7 +53,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: frontend
+    app: portal
   ports:
   - name: http
     port: 80
