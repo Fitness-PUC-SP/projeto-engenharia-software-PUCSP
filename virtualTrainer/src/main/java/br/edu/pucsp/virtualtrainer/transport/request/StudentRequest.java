@@ -1,6 +1,5 @@
 package br.edu.pucsp.virtualtrainer.transport.request;
 
-import br.edu.pucsp.virtualtrainer.validator.Cnpj;
 import br.edu.pucsp.virtualtrainer.validator.Cpf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

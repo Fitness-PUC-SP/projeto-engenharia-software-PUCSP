@@ -39,7 +39,7 @@ public class TrainerController {
     }
 
     @ApiOperation(value = "Recover a trainer by id")
-    @GetMapping(path = "/id/{trainerId}")//TODO ou CPF?
+    @GetMapping(path = "/id/{trainerId}")
     public TrainerResponse getTrainer(
             @PathVariable Long trainerId){
         return new TrainerResponse(trainerService.findTrainer(trainerId));

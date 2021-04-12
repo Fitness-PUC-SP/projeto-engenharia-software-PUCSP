@@ -59,7 +59,7 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
-    public List<TrainerDto> findAllTrainers() {//o que fazer se não encontrar nada?
+    public List<TrainerDto> findAllTrainers() {//TODO add case for no results?
         return repository.findAll()
                 .stream()
                 .filter(Trainer::isActive)
