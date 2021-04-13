@@ -1,5 +1,15 @@
-:host {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.centralizeWindow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alignFieldsToLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+mat-form-field.mat-form-field {
+  width: 1000px;
+}

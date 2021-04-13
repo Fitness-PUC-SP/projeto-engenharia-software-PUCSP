@@ -1,76 +1,81 @@
-<mat-label><mat-icon>self_improvement</mat-icon>Personal Trainer</mat-label>
+<div class="centralizeWindow">
+    <div class="alignFieldsToLeft">
+        <mat-label><mat-icon>self_improvement</mat-icon>Personal Trainer</mat-label>
 
-<mat-form-field appearance="outline">
-    <mat-label>Apelido</mat-label>
-    <input matInput maxlength="30" required [formControl]="nicknameControl" #nickname placeholder="Como quer ser chamado?"/>
-    <mat-icon matSuffix></mat-icon>
-    <mat-hint></mat-hint>
-    <mat-hint align="end">{{nickname.value?.length || 0}}/30</mat-hint>
-    <mat-error *ngIf="nicknameControl.invalid">{{getNicknameErrorMessages()}}</mat-error>
-</mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Apelido</mat-label>
+            <input autofocus matInput maxlength="30" required [formControl]="nicknameControl" #nickname placeholder="Como quer ser chamado?"/>
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint></mat-hint>
+            <mat-hint align="end">{{nickname.value?.length || 0}}/30</mat-hint>
+            <mat-error *ngIf="nicknameControl.invalid">{{getNicknameErrorMessages()}}</mat-error>
+        </mat-form-field>
 
-<mat-form-field appearance="outline">
-    <mat-label>Nome completo</mat-label>
-    <input matInput maxlength="255" required [formControl]="fullNameControl" #fullName placeholder="Digite seu nome completo"/>
-    <mat-icon matSuffix></mat-icon>
-    <mat-hint></mat-hint>
-    <mat-hint align="end">{{fullName.value?.length || 0}}/255</mat-hint>
-    <mat-error *ngIf="fullNameControl.invalid">{{getFullNameErrorMessages()}}</mat-error>
-</mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nome completo</mat-label>
+            <input matInput maxlength="255" required [formControl]="fullNameControl" #fullName placeholder="Digite seu nome completo" width="5000px"/>
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint></mat-hint>
+            <mat-hint align="end">{{fullName.value?.length || 0}}/255</mat-hint>
+            <mat-error *ngIf="fullNameControl.invalid">{{getFullNameErrorMessages()}}</mat-error>
+        </mat-form-field>
 
-<mat-form-field appearance="outline">
-    <mat-label>E-mail</mat-label>
-    <input matInput maxlength="255" required [formControl]="emailControl" #email placeholder="seuemail@provedor.com">    
-    <mat-icon matSuffix>email</mat-icon>
-    <mat-hint>Digite um e-mail válido</mat-hint>
-    <mat-hint align="end">{{email.value?.length || 0}}/255</mat-hint>
-    <mat-error *ngIf="emailControl.invalid">{{getEmailErrorMessages()}}</mat-error>
-</mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput maxlength="255" required [formControl]="emailControl" #email placeholder="seuemail@provedor.com">    
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint>Digite um e-mail válido</mat-hint>
+            <mat-hint align="end">{{email.value?.length || 0}}/255</mat-hint>
+            <mat-error *ngIf="emailControl.invalid">{{getEmailErrorMessages()}}</mat-error>
+        </mat-form-field>
 
-<mat-form-field appearance="outline">
-    <mat-label>Dt niver</mat-label>
-    <input matInput maxlength="255" required [formControl]="birthdateControl" #birthdate>    
-    <mat-icon matSuffix>date</mat-icon>
-    <mat-error *ngIf="birthdateControl.invalid">{{getBirthdateErrorMessages()}}</mat-error>
-</mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Data de nascimento</mat-label>
+            <input matInput required [matDatepicker]="picker" [formControl]="birthdateControl" #birthdate>    
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="birthdateControl.invalid">{{getBirthdateErrorMessages()}}</mat-error>
+        </mat-form-field>
 
-<mat-form-field appearance="outline">
-    <mat-label>CPF</mat-label>
-    <input matInput maxlength="11" required [formControl]="cpfControl" #cpf placeholder="Digite seu CPF">
-    <mat-icon matSuffix></mat-icon>
-    <mat-hint>999.999.999-99</mat-hint>
-    <mat-hint align="end">{{cpf.value?.length || 0}}/11</mat-hint>
-    <mat-error *ngIf="cpfControl.invalid">{{getCpfErrorMessages()}}</mat-error>
-</mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput maxlength="11" required [formControl]="cpfControl" #cpf placeholder="Digite seu CPF">
+            <mat-icon matSuffix>date</mat-icon>
+            <mat-hint>999.999.999-99</mat-hint>
+            <mat-hint align="end">{{cpf.value?.length || 0}}/11</mat-hint>
+            <mat-error *ngIf="cpfControl.invalid">{{getCpfErrorMessages()}}</mat-error>
+        </mat-form-field>
 
-<mat-form-field appearance="outline">
-    <mat-label>CNPJ</mat-label>
-    <input matInput maxlength="12" required [formControl]="cnpjControl" #cnpj placeholder="Digite seu CNPJ">
-    <mat-icon matSuffix></mat-icon>
-    <mat-hint></mat-hint>
-    <mat-hint align="end">{{cnpj.value?.length || 0}}/12</mat-hint>
-    <mat-error *ngIf="cnpjControl.invalid">{{getCnpjErrorMessages()}}</mat-error>
-</mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>CNPJ</mat-label>
+            <input matInput maxlength="12" required [formControl]="cnpjControl" #cnpj pattern="[0-9]{12}" placeholder="Digite seu CNPJ">
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint>99.999.999/9999-99</mat-hint>
+            <mat-hint align="end">{{cnpj.value?.length || 0}}/12</mat-hint>
+            <mat-error *ngIf="cnpjControl.invalid">{{getCnpjErrorMessages()}}</mat-error>
+        </mat-form-field>
 
-<mat-form-field appearance="outline">
-    <mat-label>Celular</mat-label>
-    <input matInput maxlength="11" required [formControl]="cellphoneControl" #cellphone placeholder="Digite seu melhor telefone"/>
-    <mat-icon matSuffix>phone</mat-icon>
-    <mat-hint>Número do celular com DDD</mat-hint>
-    <mat-hint align="end">{{cellphone.value?.length || 0}}/11</mat-hint>
-    <mat-error *ngIf="cellphoneControl.invalid">{{getCellphoneErrorMessages()}}</mat-error>
-</mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Celular</mat-label>
+            <input type="tel" matInput maxlength="11" required [formControl]="cellphoneControl" #cellphone placeholder="Digite seu melhor telefone"/>
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-hint>Número do celular com DDD</mat-hint>
+            <mat-hint align="end">{{cellphone.value?.length || 0}}/11</mat-hint>
+            <mat-error *ngIf="cellphoneControl.invalid">{{getCellphoneErrorMessages()}}</mat-error>
+        </mat-form-field>
 
-<mat-form-field appearance="outline">
-    <mat-label>Conta no Zoom</mat-label>
-    <input matInput maxlength="255" required [formControl]="zoomAccountControl" #zoomAccount placeholder=""/>
-    <mat-icon matSuffix></mat-icon>
-    <mat-hint></mat-hint>
-    <mat-hint align="end">{{zoomAccount.value?.length || 0}}/255</mat-hint>
-    <mat-error *ngIf="zoomAccountControl.invalid">{{getZoomAccountErrorMessages()}}</mat-error>
-</mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Conta no Zoom</mat-label>
+            <input matInput maxlength="255" [formControl]="zoomAccountControl" #zoomAccount placeholder=""/>
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint></mat-hint>
+            <mat-hint align="end">{{zoomAccount.value?.length || 0}}/255</mat-hint>
+            <mat-error *ngIf="zoomAccountControl.invalid">{{getZoomAccountErrorMessages()}}</mat-error>
+        </mat-form-field>
 
-<button mat-raised-button color="primary" 
-    (click)="save(nickname.value, fullName.value, birthdate.value, email.value, +cpf.value, +cnpj.value, +cellphone.value, zoomAccount.value)">
-    Salvar
-</button>
+        <button mat-raised-button color="primary" 
+            (click)="save(nickname.value, fullName.value, birthdate.value, email.value, +cpf.value, +cnpj.value, +cellphone.value, zoomAccount.value)">
+            Salvar
+        </button>
+    </div>
+</div>

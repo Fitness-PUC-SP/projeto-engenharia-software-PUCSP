@@ -6,7 +6,7 @@ import { TrainerService } from "src/app/services/trainer/trainer.service";
 @Component({
   selector: 'app-trainer',
   templateUrl: './trainer.component.html',
-  styleUrls: ['./trainer.component.css']
+  styleUrls: ['./trainer.component.css'],
 })
 export class TrainerComponent implements OnInit {
 
@@ -19,9 +19,11 @@ export class TrainerComponent implements OnInit {
   cpfControl = new FormControl('', [Validators.required, Validators.maxLength(11)]);
   cnpjControl = new FormControl('', [Validators.required, Validators.maxLength(12)]);
   cellphoneControl = new FormControl('', [Validators.required, Validators.maxLength(11)]);
-  zoomAccountControl = new FormControl('', [Validators.required, Validators.email]);
+  zoomAccountControl = new FormControl('', [Validators.email, Validators.maxLength(255)]);
 
-  constructor(private trainerService : TrainerService) { }
+  constructor(
+    private trainerService : TrainerService) {
+  }
   
   ngOnInit(): void { }
   
@@ -64,7 +66,7 @@ export class TrainerComponent implements OnInit {
 
   getEmailErrorMessages() {
     return `
-      ${this.getRequiredErrorMessage(this.emailControl, 'e-mail')} / 
+      ${this.getRequiredErrorMessage(this.emailControl, 'e-mail')} 
       ${this.getEmailValidatorMessage(this.emailControl, 'e-mail')}
     `;
   }
@@ -107,7 +109,6 @@ export class TrainerComponent implements OnInit {
 
   getZoomAccountErrorMessages() {
     return `
-      ${this.getRequiredErrorMessage(this.zoomAccountControl, 'conta do Zoom')} / 
       ${this.getEmailValidatorMessage(this.zoomAccountControl, 'conta do Zoom')}
     `;
   }

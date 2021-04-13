@@ -13,12 +13,12 @@ export class StudentComponent implements OnInit {
   students = [];
   student: Student = {} as Student;
   nicknameControl = new FormControl('', [Validators.required, Validators.maxLength(30)]);
-  fullNameControl = new FormControl('', [Validators.required, Validators.maxLength(60)]);
-  emailControl = new FormControl('', [Validators.required, Validators.email, Validators.maxLength(60)]);
+  fullNameControl = new FormControl('', [Validators.required, Validators.maxLength(255)]);
+  emailControl = new FormControl('', [Validators.required, Validators.email, Validators.maxLength(255)]);
   birthdateControl = new FormControl('', [Validators.required]);
   cpfControl = new FormControl('', [Validators.required, Validators.maxLength(11)]);
   cellphoneControl = new FormControl('', [Validators.required, Validators.maxLength(11)]);
-  zoomAccountControl = new FormControl('', [Validators.required, Validators.email]);
+  zoomAccountControl = new FormControl('', [Validators.email, Validators.maxLength(255)]);
 
   constructor(private studentService : StudentService) { }
 
@@ -90,7 +90,6 @@ export class StudentComponent implements OnInit {
 
   getZoomAccountErrorMessages() {
     return `
-      ${this.getRequiredErrorMessage(this.zoomAccountControl, 'conta do Zoom')} / 
       ${this.getEmailValidatorMessage(this.zoomAccountControl, 'conta do Zoom')}
     `;
   }
