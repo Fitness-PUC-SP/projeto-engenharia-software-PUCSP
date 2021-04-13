@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        label-key : label-value
+        app: portal
     spec:
       containers:
         - name: server-portal
