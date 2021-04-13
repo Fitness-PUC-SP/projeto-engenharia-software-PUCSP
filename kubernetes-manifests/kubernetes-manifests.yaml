@@ -4,13 +4,10 @@ metadata:
   name: portal
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: portal
   template:
     metadata:
       labels:
-        label-key : label-portal
+        label-key : label-value
     spec:
       containers:
         - name: server-portal
