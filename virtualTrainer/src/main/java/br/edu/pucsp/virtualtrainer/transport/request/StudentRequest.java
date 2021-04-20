@@ -1,11 +1,16 @@
 package br.edu.pucsp.virtualtrainer.transport.request;
 
+import java.time.LocalDate;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import br.edu.pucsp.virtualtrainer.validator.Cpf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.*;
-import java.time.LocalDate;
 
 @ApiModel(value = "StudentRequest", description = "Transport class for Student")
 public class StudentRequest {

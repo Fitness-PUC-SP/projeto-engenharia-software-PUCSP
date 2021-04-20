@@ -27,3 +27,4 @@ virtualTrainer/.project
 virtualTrainer/.settings/*
 virtualTrainer/target/*
 .vscode/launch.json
+.vscode/settings.json
