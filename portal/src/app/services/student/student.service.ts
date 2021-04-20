@@ -8,7 +8,6 @@ import { ErrorHandler } from "src/app/utils/error-handler.utils";
 @Injectable({
   providedIn: 'root'
 })
-
 export class StudentService extends ErrorHandler {
   private baseApi = "http://localhost:8080/virtual-trainer";
 
@@ -32,9 +31,14 @@ export class StudentService extends ErrorHandler {
       .post<Student>(`${this.baseApi}/student`, student, this.httpOptions)
       .pipe(
         tap(_ => {
-            alert('Student saved!');
+          const test = _;
         }),
         catchError(this.handleError)
       );
+  }
+
+  getAllStudents(): Observable<any> {
+      const url = `${this.baseApi}/student`;
+      return this.http.get(url);
   }
 }

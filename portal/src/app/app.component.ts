@@ -1,42 +1,74 @@
-import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
-import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { Component, OnInit, Renderer2, ElementRef, HostListener } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/filter';
+import { Location } from '@angular/common';
+
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = 0;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-
-  providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
-
-    // `MomentDateAdapter` and `MAT_MOMENT_DATE_FORMATS` can be automatically provided by importing
-    // `MatMomentDateModule` in your applications root module. We provide it at the component level
-    // here, due to limitations of our example generation script.
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
-    },
-    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'auto'}}
-  ],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'Health2U';
-  mobileQuery: MediaQueryList;
+export class AppComponent implements OnInit {
+    private _router: Subscription;
 
-  private _mobileQueryListener: () => void;
+    constructor( private renderer : Renderer2, private router: Router, private element : ElementRef, public location: Location) {}
+    @HostListener('window:scroll', ['$event'])
+    hasScrolled() {
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);  
-  }
+        var st = window.pageYOffset;
+        // Make sure they scroll more than delta
+        if(Math.abs(lastScrollTop - st) <= delta)
+            return;
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
+        var navbar = document.getElementsByTagName('nav')[0];
+
+        // If they scrolled down and are past the navbar, add class .headroom--unpinned.
+        // This is necessary so you never see what is "behind" the navbar.
+        if (st > lastScrollTop && st > navbarHeight){
+            // Scroll Down
+            if (navbar.classList.contains('headroom--pinned')) {
+                navbar.classList.remove('headroom--pinned');
+                navbar.classList.add('headroom--unpinned');
+            }
+            // $('.navbar.headroom--pinned').removeClass('headroom--pinned').addClass('headroom--unpinned');
+        } else {
+            // Scroll Up
+            //  $(window).height()
+            if(st + window.innerHeight < document.body.scrollHeight) {
+                // $('.navbar.headroom--unpinned').removeClass('headroom--unpinned').addClass('headroom--pinned');
+                if (navbar.classList.contains('headroom--unpinned')) {
+                    navbar.classList.remove('headroom--unpinned');
+                    navbar.classList.add('headroom--pinned');
+                }
+            }
+        }
+
+        lastScrollTop = st;
+    };
+    ngOnInit() {
+      var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
+      this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe(() => {
+          if (window.outerWidth > 991) {
+              window.document.children[0].scrollTop = 0;
+          }else{
+              window.document.activeElement.scrollTop = 0;
+          }
+          this.renderer.listen('window', 'scroll', () => {
+              const number = window.scrollY;
+              if (number > 150 || window.pageYOffset > 150) {
+                  // add logic
+                  navbar.classList.add('headroom--not-top');
+              } else {
+                  // remove logic
+                  navbar.classList.remove('headroom--not-top');
+              }
+          });
+      });
+      this.hasScrolled();
+    }
 }
