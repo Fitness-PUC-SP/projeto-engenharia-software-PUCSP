@@ -32,16 +32,19 @@ public class TrainerRequest {
     private Long cnpj;
 
     @ApiModelProperty(name = "birthdate")
+    @NotNull(message = "The birthdate cannot be null")
     @Past(message = "This is not a valid date of birth")
     private LocalDate birthdate;
 
     @ApiModelProperty(name = "email")
+    @NotEmpty(message = "The email cannot be empty or null")
     @Email(message = "This is not a valid email")
     private String email;
 
     @ApiModelProperty(name = "cellphone")
+    @NotNull(message = "The cellphone cannot be null")
     @Positive(message = "Invalid cellphone number")
-    //TODO create custom validator
+    //TODO create custom validator (size and number only)
     private Long cellphone;
 
     @ApiModelProperty(name = "zoomAccount")
