@@ -1,15 +1,12 @@
 package br.edu.pucsp.virtualtrainer.controller;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,16 +16,10 @@ import java.util.Arrays;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import br.edu.pucsp.virtualtrainer.config.RestExceptionHandler;
-import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
-import br.edu.pucsp.virtualtrainer.repository.StudentRepository;
 import br.edu.pucsp.virtualtrainer.service.StudentServiceImpl;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
 
@@ -38,19 +29,6 @@ public class StudentControllerTest extends AbstractControllerTest {
 
     @MockBean
     private StudentServiceImpl studentService;
-
-    @Mock
-    private StudentController StudentController;
-
-    @Mock
-    private StudentRepository repository;
-
-    @Before
-    public void setup() {
-    this.mvc = MockMvcBuilders.standaloneSetup(StudentController)
-        .setControllerAdvice(new RestExceptionHandler())
-        .build();
-}
 
     private StudentRequest getStudentRequest() throws Exception {
         StudentRequest request = new StudentRequest();
