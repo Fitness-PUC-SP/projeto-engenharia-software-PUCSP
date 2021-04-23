@@ -3,18 +3,18 @@ package br.edu.pucsp.virtualtrainer.service;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
@@ -24,7 +24,7 @@ import br.edu.pucsp.virtualtrainer.repository.StudentRepository;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public class StudentServiceTest {
 
     @Captor
@@ -45,7 +45,7 @@ public class StudentServiceTest {
         verify(repository).save(studentCaptor.capture());
 
         Student created = studentCaptor.getValue();
-        Assertions.assertTrue(created.isActive());        
+        assertTrue(created.isActive());        
     }
 
     @Test
@@ -57,7 +57,7 @@ public class StudentServiceTest {
         
         StudentDto response = studentService.findStudent(1L);
         
-        Assertions.assertEquals("Student", response.getNickname());
+        assertEquals("Student", response.getNickname());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class StudentServiceTest {
         verify(repository).save(studentCaptor.capture());
 
         Student deleted = studentCaptor.getValue();
-        Assertions.assertFalse(deleted.isActive()); 
+        assertFalse(deleted.isActive()); 
 
     }
 
@@ -88,7 +88,7 @@ public class StudentServiceTest {
         studentService.updateStudent(request, 1L);
         verify(repository).save(studentCaptor.capture());
         Student updated = studentCaptor.getValue();
-
+        
         assertEquals(request.getCellphone(), updated.getCellphone());
         assertEquals(request.getEmail(), updated.getEmail());
         assertEquals(request.getZoomAccount(), updated.getZoomAccount());
