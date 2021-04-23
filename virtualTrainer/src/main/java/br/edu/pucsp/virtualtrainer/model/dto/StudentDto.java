@@ -7,7 +7,7 @@ public class StudentDto {
 
     private String fullName;
 
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     private Long cpf;
 
@@ -33,12 +33,12 @@ public class StudentDto {
         this.fullName = fullName;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Long getCpf() {
