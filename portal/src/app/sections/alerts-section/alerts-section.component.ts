@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 export interface IAlert {
-    id: number;
+    id?: number;
     type: string;
     strong?: string;
     message: string;

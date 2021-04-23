@@ -2,6 +2,7 @@ package br.edu.pucsp.virtualtrainer.controller;
 
 import br.edu.pucsp.virtualtrainer.service.StudentService;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
+import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
 import br.edu.pucsp.virtualtrainer.transport.response.StudentResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -31,14 +32,14 @@ public class StudentController {
 
     @ApiOperation(value = "Find a Student from the database")
     @GetMapping(path = "/{studentId}")
-    public StudentResponse getStudent(@PathVariable Long studentId) {
+    public StudentResponse getStudentById(@PathVariable Long studentId) {
         return new StudentResponse(studentService.findStudent(studentId));
     }
 
     @ApiOperation(value = "Update a Student in the database")
-    @PutMapping(path = "/{studentId}")
-    public void updateStudent(@RequestBody @Valid StudentRequest request, @PathVariable Long studentId) {
-        studentService.updateStudent(request, studentId);
+    @PutMapping(path = "")
+    public void updateStudent(@RequestBody @Valid StudentUpdateRequest request) {
+        studentService.updateStudent(request);
     }
 
     @ApiOperation(value = "Delete (deactivate) a Student from the database")
@@ -46,6 +47,5 @@ public class StudentController {
     public void deleteStudent(@PathVariable Long studentId) {
         studentService.deleteStudent(studentId);
     }
-
 }
 

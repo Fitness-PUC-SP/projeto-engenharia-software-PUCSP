@@ -53,17 +53,16 @@ export class TrainerComponent implements OnInit {
       .then(() => {
         this.showSucessAlert();
       })
-      .catch(() => {
-        this.showErrorAlert();
+      .catch(error => {
+        this.showErrorAlert(error.message);
       });
   }
 
   showSucessAlert() {
     const successAlert: IAlert = {
-      id: 1,
       type: 'success',
       strong: 'Successo!',
-      message: `O Profissional \"<br>\"${this.trainer.fullName} foi salvo com sucesso!`,
+      message: `O Profissional ${this.trainer.fullName} foi salvo com sucesso!`,
       icon: 'ni ni-like-2'
     };
     
@@ -71,12 +70,11 @@ export class TrainerComponent implements OnInit {
     this.showAlert = true;
   }
   
-  showErrorAlert() {
+  showErrorAlert(message: string) {
     const errorAlert: IAlert = {
-      id: 2,
       type: 'danger',
-      strong: 'Falha!',
-      message: `Não foi possível salvar. Tente novamente!`,
+      strong: 'Não foi possível salvar!',
+      message: `${message}`,
       icon: 'ni ni-support-16'
     };
     

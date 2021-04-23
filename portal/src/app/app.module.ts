@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
@@ -14,13 +14,13 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 import { StudentComponent } from './components/student/student.component';
 import { TrainerComponent } from './components/trainer/trainer.component';
+import { TrainersComponent } from './components/trainers/trainers.component';
 import { StudentService } from './services/student/student.service';
 import { TrainerService } from './services/trainer/trainer.service';
-import { HttpClientModule } from '@angular/common/http';
-import { StudentsComponent } from './components/students/students.component';
-import { TrainersComponent } from './components/trainers/trainers.component';
+import { StudentSearchComponent } from './components/student-search/student-search.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +32,15 @@ import { TrainersComponent } from './components/trainers/trainers.component';
     FooterComponent,
     LoginComponent,
     StudentComponent,
-    StudentsComponent,
     TrainerComponent,
-    TrainersComponent
+    TrainersComponent,
+    StudentSearchComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
     HomeModule,

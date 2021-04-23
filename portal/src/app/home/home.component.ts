@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IAlert } from '../sections/alerts-section/alerts-section.component';
+import { StudentService } from '../services/student/student.service';
 
 @Component({
     selector: 'app-home',
@@ -7,15 +10,41 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomeComponent implements OnInit {
-    model = {
-        left: true,
-        middle: false,
-        right: false
-    };
+  model = {
+      left: true,
+      middle: false,
+      right: false
+  };
 
-    focus;
-    focus1;
-    constructor() { }
+  focus;
+  focus1;
+  alert: IAlert;
+  showAlert: boolean;
+  id: number;
 
-    ngOnInit() {}
+  constructor(
+      private route: ActivatedRoute,
+      private studentService: StudentService) { 
+        
+      this.id = +this.route.snapshot.paramMap.get('id'); // "+": convert string to number in Javascript
+
+      const rota = route.pathFromRoot[1].snapshot.url[0].path;
+
+      if (this.id) {
+        if (rota.indexOf('student')) {
+          this.studentService.deleteStudent(this.id)
+            .subscribe(
+              (result:any) => {  // "(result:any)": trecho de código para prevenção do erro de compilação "Property 'student' does not exist on type 'Student'.ts(2339)"
+                  alert("Aluno desativado com sucesso!");
+              },
+              (error) => {
+                  alert('Não foi possível desativar o aluno');
+              });
+        } else if (rota.indexOf('trainer')) {
+          // chama trainerService.deleteTrainer 
+        }
+      }
+  }
+
+  ngOnInit() {}
 }
