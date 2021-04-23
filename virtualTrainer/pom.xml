@@ -11,10 +11,11 @@
 	<groupId>br.edu.pucsp</groupId>
 	<artifactId>virtualTrainer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>virtualTrainer</name>
+	<name>projeto-engenharia-software-PUCSP</name>
 	<description>Aplicação para aulas virtuais</description>
 	<properties>
 		<java.version>11</java.version>
+		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 	</properties>
 
 	<dependencies>
@@ -69,11 +70,11 @@
 
 
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot-starter-test</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

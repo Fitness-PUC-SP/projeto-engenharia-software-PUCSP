@@ -1,0 +1,68 @@
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode"
+  APP_NAME: virtual-trainer
+
+stages:
+  - package
+  - build
+  - publish
+
+package:
+  stage: package
+  image: maven:latest
+  cache:
+    paths:
+      - .m2/repository/
+  script:
+    - mvn clean package -DskipTest
+  artifacts:
+    paths:
+      - target/*.jar
+
+build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [ "" ]
+  variables:
+    DOCKER_IMAGE_TAG: 'gcr.io/kubernetsalura/virtual-trainer/feature/gcp-backend'
+  script:
+    - export GOOGLE_APPLICATION_CREDENTIALS=/kaniko/kaniko-secret.json
+    - echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS 
+    - /kaniko/executor --context=$CI_PROJECT_DIR --dockerfile=Dockerfile --destination=$DOCKER_IMAGE_TAG:v1 --cache=true
+  only:
+    - development
+    - feature/gcp-backend
+    - main
+
+develop:
+  stage: publish
+  image: google/cloud-sdk:257.0.0
+  environment: develop
+  script:
+    - echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > key.json
+    - gcloud auth activate-service-account --key-file=key.json 
+    - gcloud config set project kubernetsalura
+    - gcloud config set compute/zone us-central1-a
+    - gcloud container clusters get-credentials cluster-1
+    - kubectl apply -f gke/deployment.yaml
+    - kubectl rollout restart deployment.apps/virtual-trainer
+  only:
+    - development
+    - feature/gcp-backend
+  when: manual
+
+production:
+  stage: publish
+  image: google/cloud-sdk:257.0.0
+  environment: develop
+  script:
+    - gcloud config set project kubernetsalura
+    - gcloud config set compute/zone us-central1-b
+    - gcloud container clusters get-credentials project-puc-cluster-1
+    - kubectl apply -f gke/deployment.yaml
+    - kubectl rollout restart deployment.apps/virtual-trainer -n backend
+  only:
+    - master
+  when: manual

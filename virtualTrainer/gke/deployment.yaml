@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 'virtual-trainer'
+  labels:
+    app: 'virtual-trainer'
+    environment: 'development'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 'virtual-trainer'
+  template:
+    metadata:
+      labels:
+        app: 'virtual-trainer'
+        environment: 'development'
+    spec:
+      containers:
+        - name: 'virtual-trainer'
+          image: 'gcr.io/kubernetsalura/virtual-trainer/feature/gcp-backend:v1'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: 'virtual-trainer'
+spec:
+  type: ClusterIP
+  selector:
+    app: 'virtual-trainer'
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: 'virtual-trainer-external'
+spec:
+  type: LoadBalancer
+  selector:
+    app: 'virtual-trainer'
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+            

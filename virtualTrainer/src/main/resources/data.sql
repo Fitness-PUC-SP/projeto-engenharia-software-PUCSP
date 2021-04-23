@@ -1,8 +1,8 @@
-INSERT INTO Category (name) VALUES ('Bem Estar');
-INSERT INTO Category (name) VALUES ('Atividade Física');
-INSERT INTO Category (name) VALUES ('Educação Alimentar');
+INSERT INTO category (name) VALUES ('Bem Estar');
+INSERT INTO category (name) VALUES ('Atividade Física');
+INSERT INTO category (name) VALUES ('Educação Alimentar');
 
-INSERT INTO Field ( name, certificate, category) VALUES ( 'Nutricao', false, 3);
-INSERT INTO Field ( name, certificate, category) VALUES ( 'Yoga', false, 1);
-INSERT INTO Field ( name, certificate, category) VALUES ( 'Treino', true, 2);
+INSERT INTO field ( name, certificate, category) VALUES ( 'Nutricao', false, 3);
+INSERT INTO field ( name, certificate, category) VALUES ( 'Yoga', false, 1);
+INSERT INTO field ( name, certificate, category) VALUES ( 'Treino', true, 2);
 
