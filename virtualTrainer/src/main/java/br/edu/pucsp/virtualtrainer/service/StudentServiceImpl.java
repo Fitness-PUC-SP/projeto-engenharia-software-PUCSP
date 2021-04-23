@@ -9,6 +9,7 @@ import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
 import br.edu.pucsp.virtualtrainer.model.entity.Student;
 import br.edu.pucsp.virtualtrainer.repository.StudentRepository;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
+import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -43,8 +44,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void updateStudent(StudentRequest request, Long id) {
-        Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
+    public void updateStudent(StudentUpdateRequest request) {
+        Student student = repository.findById(request.getId()).orElseThrow(() -> new DataNotFoundException(request.getId()));
         student.setEmail(request.getEmail());
         student.setZoomAccount(request.getZoomAccount());
         student.setCellphone(request.getCellphone());

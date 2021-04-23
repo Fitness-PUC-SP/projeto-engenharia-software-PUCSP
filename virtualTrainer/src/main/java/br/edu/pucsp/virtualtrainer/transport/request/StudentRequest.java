@@ -15,6 +15,9 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "StudentRequest", description = "Transport class for Student")
 public class StudentRequest {
 
+    @ApiModelProperty(name = "id")
+    private Long id;
+
     @ApiModelProperty(name = "nickname")
     @NotEmpty(message = "The nickname cannot be null or empty")
     @Size(min = 3, max = 30, message = "A nickname should have between 3 and 20 characters")
@@ -46,6 +49,14 @@ public class StudentRequest {
     @ApiModelProperty(name = "zoomAccount")
     @Email(message = "This is not a valid email")
     private String zoomAccount;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNickname() {
         return nickname;
