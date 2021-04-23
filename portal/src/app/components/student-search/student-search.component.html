@@ -1,0 +1,17 @@
+<div class="form-group" [ngClass]="{'focused':focus1===true}">
+    <div class="input-group input-group-alternative mb-4">
+        <div class="input-group-prepend">
+        <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+        </div>
+        <input class="form-control" placeholder="Pesquisar aluno" type="text" #studentSearchBox id="student-search-box" 
+            (focus)="focus1=true" (blur)="focus1=false" (input)="search(studentSearchBox.value)">
+
+        <ul class="search-result">
+            <!-- Async pipe = The $ is a convention that indicates heroes$ is an Observable, not an array -->
+            <!-- This identifies Angular's AsyncPipe and subscribes to an Observable automatically so you won't have to do so in the component class -->
+            <li *ngFor="let student of students$ | async">
+                <a routerLink="/student/{{student.cpf}}">{{student.fullName}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

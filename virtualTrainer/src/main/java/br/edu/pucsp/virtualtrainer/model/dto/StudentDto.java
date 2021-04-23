@@ -3,7 +3,7 @@ package br.edu.pucsp.virtualtrainer.model.dto;
 import java.time.LocalDate;
 
 public class StudentDto {
-	
+
     private String nickname;
 
     private String fullName;
@@ -17,70 +17,68 @@ public class StudentDto {
     private Long cellphone;
 
     private String zoomAccount;
-    
-    private boolean active;
 
-	public String getNickname() {
-		return nickname;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getFullName() {
-		return fullName;
-	}
+    public String getNickname() {
+        return nickname;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
-	public LocalDate getBirthdate() {
-		return birthdate;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	public void setBirthdate(LocalDate birthdate) {
-		this.birthdate = birthdate;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	public Long getCpf() {
-		return cpf;
-	}
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
 
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
-	}
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public Long getCpf() {
+        return cpf;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
+    }
 
-	public Long getCellphone() {
-		return cellphone;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setCellphone(Long cellphone) {
-		this.cellphone = cellphone;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getZoomAccount() {
-		return zoomAccount;
-	}
+    public Long getCellphone() {
+        return cellphone;
+    }
 
-	public void setZoomAccount(String zoomAccount) {
-		this.zoomAccount = zoomAccount;
-	}
+    public void setCellphone(Long cellphone) {
+        this.cellphone = cellphone;
+    }
 
-	public boolean isActive() {
-		return active;
-	}
+    public String getZoomAccount() {
+        return zoomAccount;
+    }
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+    public void setZoomAccount(String zoomAccount) {
+        this.zoomAccount = zoomAccount;
+    }
 }

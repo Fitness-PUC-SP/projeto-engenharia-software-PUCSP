@@ -1,4 +1,5 @@
 export interface Student {
+    id?: number;
     nickname: string;
     fullName: string;
     birthdate: string;
@@ -6,5 +7,5 @@ export interface Student {
     email: string;
     cellphone: number;
     zoomAccount: string;
-    active: boolean;
+    active?: boolean;
 }
