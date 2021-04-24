@@ -21,8 +21,8 @@ public class Student {
     @Column(nullable = false, length = 60, name = "full_name")
     private String fullName;
 
-    @Column(nullable = false)
-    private LocalDate birthdate;
+    @Column(nullable = false, name = "birth_date")
+    private LocalDate birthDate;
 
     @Column(nullable = false, unique = true)
     private Long cpf;
@@ -67,12 +67,12 @@ public class Student {
         this.fullName = fullName;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthdate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Long getCpf() {

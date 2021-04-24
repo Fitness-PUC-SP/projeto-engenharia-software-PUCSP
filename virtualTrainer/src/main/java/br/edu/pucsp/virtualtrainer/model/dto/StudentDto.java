@@ -9,7 +9,7 @@ public class StudentDto {
 
     private String fullName;
 
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     private Long cpf;
 
@@ -19,11 +19,11 @@ public class StudentDto {
 
     private String zoomAccount;
 
-    public Long getId() {
+    public Long getId(){
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id){
         this.id = id;
     }
 
@@ -43,12 +43,12 @@ public class StudentDto {
         this.fullName = fullName;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Long getCpf() {

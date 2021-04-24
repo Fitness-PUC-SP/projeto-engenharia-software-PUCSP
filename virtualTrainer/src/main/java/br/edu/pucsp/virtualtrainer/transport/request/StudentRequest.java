@@ -28,9 +28,9 @@ public class StudentRequest {
     @Size(min = 3, max = 100, message = "A full name should have between 3 and 100 characters")
     private String fullName;
 
-    @ApiModelProperty(name = "birthdate")
+    @ApiModelProperty(name = "birthDate")
     @Past(message = "This is not a valid date of birth")
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     @ApiModelProperty(name = "cpf")
     @Positive(message = "Invalid CPF number")
@@ -82,12 +82,12 @@ public class StudentRequest {
         this.cpf = cpf;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getEmail() {

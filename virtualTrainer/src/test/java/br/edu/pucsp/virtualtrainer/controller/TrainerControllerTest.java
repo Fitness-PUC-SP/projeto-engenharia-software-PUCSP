@@ -21,17 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class TrainerControllerTest extends AbstractControllerTest {
 
-
-    public static final String NICKNAME = "nickname";
-    public static final String FULL_NAME = "full name";
-    public static final long CPF = 1234567890L;
-    public static final long BAD_CPF = 1234567892L;
-    public static final long CNPJ = 52063444000170L;
-    public static final long BAD_CNPJ = 52063444000171L;
-    public static final long CELLPHONE = 9999999L;
-    public static final String EMAIL = "email@domain.com";
-    public static final String BAD_EMAIL = "email";
-
     @MockBean
     private TrainerServiceImpl trainerService;
 

@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/migrations/init/DDL.xml
   - include:
       file: db/migrations/init/DML.xml
+  - include:
+      file: db/migrations/20210423/changeColumnName.xml
