@@ -12,7 +12,6 @@ import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
 import br.edu.pucsp.virtualtrainer.model.entity.Student;
 import br.edu.pucsp.virtualtrainer.repository.StudentRepository;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
-import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -40,7 +39,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentDto> findStudents(String nickname) {
         return repository.findByNickname(nickname)
-                .orElseThrow(() -> new DataNotFoundException(String.join(" ", nickname))).stream()
+                .orElseThrow(() -> new DataNotFoundException(nickname)).stream()
                 .filter(Student::isActive).map(MAPPER::entityToDto).collect(Collectors.toList());
     }
 
