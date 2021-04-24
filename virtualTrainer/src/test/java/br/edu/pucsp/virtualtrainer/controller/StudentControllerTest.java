@@ -2,6 +2,7 @@ package br.edu.pucsp.virtualtrainer.controller;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -137,7 +138,7 @@ public class StudentControllerTest extends AbstractControllerTest {
         Long id = Long.MAX_VALUE;
         String json = getJson(request);
 
-        doThrow(new DataNotFoundException(id)).when(studentService).updateStudent(any(StudentRequest.class));
+        doThrow(new DataNotFoundException(id)).when(studentService).updateStudent(any(StudentRequest.class), anyLong());
 
         mvc.perform(put(STUDENT_URL + id).content(json).contentType(APPLICATION_JSON))
            .andExpect(status().isNotFound());

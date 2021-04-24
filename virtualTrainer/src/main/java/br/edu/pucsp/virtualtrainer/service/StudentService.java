@@ -11,6 +11,6 @@ public interface StudentService {
     StudentDto findStudent(Long id);
     List<StudentDto> findStudents(String name);
     void deleteStudent(Long id);
-    void updateStudent(StudentRequest request);
+    void updateStudent(StudentRequest request, Long studentId);
     boolean hasZoomAccount(Long studentId);
 }
