@@ -21,7 +21,7 @@ public class Student {
     @Column(nullable = false, length = 60, name = "full_name")
     private String fullName;
 
-    @Column(nullable = false, name = "birthdate")
+    @Column(nullable = false, name = "birth_date")
     private LocalDate birthDate;
 
     @Column(nullable = false, unique = true)
