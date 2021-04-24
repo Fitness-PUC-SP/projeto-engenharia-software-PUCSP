@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
-import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
 
 public interface StudentService {
 
