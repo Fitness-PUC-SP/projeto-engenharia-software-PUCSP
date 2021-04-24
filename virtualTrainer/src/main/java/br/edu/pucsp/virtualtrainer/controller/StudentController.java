@@ -3,6 +3,7 @@ package br.edu.pucsp.virtualtrainer.controller;
 import br.edu.pucsp.virtualtrainer.service.StudentService;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
 import br.edu.pucsp.virtualtrainer.transport.response.StudentListResponse;
+import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
 import br.edu.pucsp.virtualtrainer.transport.response.StudentResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -43,9 +44,9 @@ public class StudentController {
     }
 
     @ApiOperation(value = "Update a Student in the database")
-    @PutMapping(path = "/{studentId}")
-    public void updateStudent(@RequestBody @Valid StudentRequest request, @PathVariable Long studentId) {
-        studentService.updateStudent(request, studentId);
+    @PutMapping(path = "")
+    public void updateStudent(@RequestBody @Valid StudentUpdateRequest request) {
+        studentService.updateStudent(request);
     }
 
     @ApiOperation(value = "Delete (deactivate) a Student from the database")
