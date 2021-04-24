@@ -2,7 +2,6 @@ package br.edu.pucsp.virtualtrainer.controller;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -58,13 +57,6 @@ public class StudentControllerTest extends AbstractControllerTest {
         return studentDto;
     }
 
-    private String getJson(StudentRequest request) throws Exception {
-        OBJECT_MAPPER.registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        String json = OBJECT_MAPPER.writeValueAsString(request);
-        return json;
-    }
-
-    
     @Test
     public void whenPostingStudent_shouldGetCreated() throws Exception {
         StudentRequest request = getStudentRequest();
@@ -145,7 +137,7 @@ public class StudentControllerTest extends AbstractControllerTest {
         Long id = Long.MAX_VALUE;
         String json = getJson(request);
 
-        doThrow(new DataNotFoundException(id)).when(studentService).updateStudent(any(StudentRequest.class), anyLong());
+        doThrow(new DataNotFoundException(id)).when(studentService).updateStudent(any(StudentRequest.class));
 
         mvc.perform(put(STUDENT_URL + id).content(json).contentType(APPLICATION_JSON))
            .andExpect(status().isNotFound());

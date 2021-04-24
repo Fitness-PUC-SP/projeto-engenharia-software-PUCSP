@@ -35,6 +35,14 @@ public class Field {
         this.name = name;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public boolean isCertified() {
         return certified;
     }

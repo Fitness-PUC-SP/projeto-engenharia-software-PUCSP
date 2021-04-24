@@ -1,23 +1,37 @@
 package br.edu.pucsp.virtualtrainer.transport.request;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 public class SessionRequest {
 
-    private LocalDate date;
+    @NotNull
+    @Future
+    private LocalDate schedule;
 
+    @NotNull
+    @Positive
+    @Max(60)
     private Integer length;
 
+    @NotNull
     private Long trainerId;
 
+    @NotNull
     private Long fieldId;
 
-    public LocalDate getDate() {
-        return date;
+    @NotNull
+    private Long studentId;
+
+    public LocalDate getSchedule() {
+        return schedule;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setSchedule(LocalDate schedule) {
+        this.schedule = schedule;
     }
 
     public Integer getLength() {
@@ -43,4 +57,14 @@ public class SessionRequest {
     public void setFieldId(Long fieldId) {
         this.fieldId = fieldId;
     }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
+
 }

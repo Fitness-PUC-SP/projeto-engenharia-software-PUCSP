@@ -2,6 +2,7 @@ package br.edu.pucsp.virtualtrainer.model.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Session {
@@ -11,7 +12,7 @@ public class Session {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private LocalDate schedule;
 
     @Column(nullable = false)
     private Integer length;
@@ -24,6 +25,10 @@ public class Session {
     @JoinColumn(name = "field", referencedColumnName = "id")
     private Field field;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "student", referencedColumnName = "id")
+    private Student student;
+
     @Column(nullable = false)
     private boolean confirmed;
 
@@ -35,12 +40,12 @@ public class Session {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getSchedule() {
+        return schedule;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setSchedule(LocalDate schedule) {
+        this.schedule = schedule;
     }
 
     public Integer getLength() {
@@ -65,6 +70,14 @@ public class Session {
 
     public void setField(Field field) {
         this.field = field;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public boolean isConfirmed() {

@@ -1,7 +1,10 @@
 package br.edu.pucsp.virtualtrainer.controller;
 
+import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,4 +30,9 @@ public abstract class AbstractControllerTest{
 
     @Autowired
     protected MockMvc mvc;
+
+    public String getJson(Object request) throws Exception {
+        OBJECT_MAPPER.registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return OBJECT_MAPPER.writeValueAsString(request);
+    }
 }

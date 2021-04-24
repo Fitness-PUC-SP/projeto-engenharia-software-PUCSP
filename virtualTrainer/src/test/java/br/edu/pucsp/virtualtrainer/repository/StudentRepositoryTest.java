@@ -10,7 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import br.edu.pucsp.virtualtrainer.model.entity.Student;
 
-public class StudentRepositoryTest extends AbstractRepositoryTest<StudentRepository, Student>{
+class StudentRepositoryTest extends AbstractRepositoryTest<StudentRepository, Student>{
 
     @Override
     protected Student buildEntity() {

@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/migrations/20210415/CreateSession.xml
   - include:
       file: db/migrations/20210423/changeColumnName.xml
+  - include:
+      file: db/migrations/20210423/changeColumnType.xml

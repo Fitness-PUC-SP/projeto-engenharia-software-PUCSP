@@ -13,9 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.Collections.*;
 import static java.util.Optional.*;
@@ -104,7 +102,7 @@ class TrainerServiceTest {
         TrainerRequest trainerRequest = getTrainerRequest();
         when(repository.findById(1L)).thenReturn(empty());
         Assert.assertThrows(DataNotFoundException.class, () -> {
-            fixture.updateTrainer(trainerRequest, 1L);
+            fixture.updateTrainer(trainerRequest);
         });
     }
 

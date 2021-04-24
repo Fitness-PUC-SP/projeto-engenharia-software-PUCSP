@@ -3,7 +3,6 @@ package br.edu.pucsp.virtualtrainer.service;
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.TrainerMapper;
 import br.edu.pucsp.virtualtrainer.model.dto.TrainerDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Field;
 import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.model.entity.TrainerField;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
@@ -37,14 +36,14 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public void createTrainer(TrainerRequest request) {
-        Trainer trainer = MAPPER.requestToEntity(request);
+        var trainer = MAPPER.requestToEntity(request);
         repository.save(trainer);
     }
 
     @Override
     public List<TrainerDto> findTrainers(String nickname) {
         return repository.findByNickname(nickname)
-                .orElseThrow(() -> new DataNotFoundException(String.join(" ", nickname)))
+                .orElseThrow(() -> new DataNotFoundException(nickname))
                 .stream()
                 .filter(Trainer::isActive)
                 .map(MAPPER::entityToDto)
@@ -53,7 +52,7 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public TrainerDto findTrainer(Long trainerId) {
-        Trainer trainer = repository.findById(trainerId)
+        var trainer = repository.findById(trainerId)
                 .orElseThrow(() -> new DataNotFoundException(trainerId));
         return MAPPER.entityToDto(trainer);
     }
@@ -69,16 +68,16 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public void deleteTrainer(Long trainerId) {
-        Trainer trainer = repository.findById(trainerId)
+        var trainer = repository.findById(trainerId)
                 .orElseThrow(() -> new DataNotFoundException(trainerId));
         trainer.setActive(false);
         repository.save(trainer);
     }
 
     @Override
-    public void updateTrainer(TrainerRequest request, Long trainerId) {
-        Trainer trainer = repository.findById(trainerId)
-                .orElseThrow(() -> new DataNotFoundException(trainerId));
+    public void updateTrainer(TrainerRequest request) {
+        var trainer = repository.findById(request.getId())
+                .orElseThrow(() -> new DataNotFoundException(request.getId()));
         trainer.setNickname(request.getNickname());
         trainer.setFullName(request.getFullName());
         trainer.setBirthdate(request.getBirthdate());
@@ -90,11 +89,16 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public void addFields(String certificate){
-        Field field = fieldRepository.getOne(1L);
-        Trainer trainer = repository.getOne(1L);
+        var field = fieldRepository.getOne(1L);
+        var trainer = repository.getOne(1L);
 
-        TrainerField trainerField = new TrainerField(trainer, field);
+        var trainerField = new TrainerField(trainer, field);
         trainerField.setCertificate(certificate);
         trainerFieldRepository.save(trainerField);
+    }
+
+    @Override
+    public boolean hasZoomAccount(Long studentId) {
+        return repository.hasZoomAccount(studentId);
     }
 }

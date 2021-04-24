@@ -85,7 +85,7 @@ public class StudentServiceTest {
         when(repository.findById(1L)).thenReturn(of(student));
     
 
-        studentService.updateStudent(request, 1L);
+        studentService.updateStudent(request);
         verify(repository).save(studentCaptor.capture());
         Student updated = studentCaptor.getValue();
         
@@ -116,7 +116,7 @@ public class StudentServiceTest {
         request.setFullName("Testing Student");
 
         when(repository.findById(1L)).thenReturn(empty());
-        studentService.updateStudent(request, 1L);
+        studentService.updateStudent(request);
     }
 }
 

@@ -3,7 +3,6 @@ package br.edu.pucsp.virtualtrainer.controller;
 import br.edu.pucsp.virtualtrainer.service.StudentService;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
 import br.edu.pucsp.virtualtrainer.transport.response.StudentListResponse;
-import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
 import br.edu.pucsp.virtualtrainer.transport.response.StudentResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -45,7 +44,7 @@ public class StudentController {
 
     @ApiOperation(value = "Update a Student in the database")
     @PutMapping(path = "")
-    public void updateStudent(@RequestBody @Valid StudentUpdateRequest request) {
+    public void updateStudent(@RequestBody @Valid StudentRequest request) {
         studentService.updateStudent(request);
     }
 

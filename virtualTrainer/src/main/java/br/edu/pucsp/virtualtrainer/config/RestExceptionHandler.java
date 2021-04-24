@@ -1,6 +1,7 @@
 package br.edu.pucsp.virtualtrainer.config;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
+import br.edu.pucsp.virtualtrainer.exception.UnprocessableEntityException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
 
-@ControllerAdvice
+//@ControllerAdvice
 @Order
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -61,6 +62,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         logException(e, req);
 
         return formatResponse("Data not Found", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UnprocessableEntityException.class)
+    public ResponseEntity<Object> handleNoAccount(UnprocessableEntityException e, HttpServletRequest req){
+        logException(e, req);
+
+        return formatResponse(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

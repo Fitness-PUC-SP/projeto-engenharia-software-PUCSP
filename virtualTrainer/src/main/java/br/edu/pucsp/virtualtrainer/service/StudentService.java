@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
-import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
 
 public interface StudentService {
 
@@ -12,5 +11,6 @@ public interface StudentService {
     StudentDto findStudent(Long id);
     List<StudentDto> findStudents(String name);
     void deleteStudent(Long id);
-    void updateStudent(StudentRequest request, Long id);
+    void updateStudent(StudentRequest request);
+    boolean hasZoomAccount(Long studentId);
 }

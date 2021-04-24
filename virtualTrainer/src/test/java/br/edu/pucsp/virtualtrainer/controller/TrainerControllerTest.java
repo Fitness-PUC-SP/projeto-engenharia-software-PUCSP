@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -214,10 +215,11 @@ class TrainerControllerTest extends AbstractControllerTest {
                 .andDo(print());
     }
 
-    private TrainerRequest getTrainerRequest() {
+    public TrainerRequest getTrainerRequest() {
         TrainerRequest request = new TrainerRequest();
         request.setNickname(NICKNAME);
         request.setFullName(FULL_NAME);
+        request.setBirthdate(LocalDate.parse("2020-10-10", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         request.setCpf(CPF);
         request.setCnpj(CNPJ);
         request.setCellphone(CELLPHONE);

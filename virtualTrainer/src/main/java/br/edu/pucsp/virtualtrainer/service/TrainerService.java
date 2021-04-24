@@ -13,5 +13,6 @@ public interface TrainerService {
     List<TrainerDto> findAllTrainers();
     void addFields(String certificate);
     void deleteTrainer(Long trainerId);
-    void updateTrainer(TrainerRequest request, Long trainerId);
+    void updateTrainer(TrainerRequest request);
+    boolean hasZoomAccount(Long studentId);
 }
