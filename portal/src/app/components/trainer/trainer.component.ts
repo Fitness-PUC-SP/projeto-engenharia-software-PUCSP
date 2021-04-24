@@ -1,27 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { Trainer } from 'src/app/models/trainer/trainer';
+import { IAlert } from 'src/app/sections/alerts-section/alerts-section.component';
 import { TrainerService } from "src/app/services/trainer/trainer.service";
 
 @Component({
   selector: 'app-trainer',
   templateUrl: './trainer.component.html',
-  styleUrls: ['./trainer.component.css']
+  styleUrls: ['./trainer.component.scss'],
 })
 export class TrainerComponent implements OnInit {
 
-  trainers = [];
   trainer: Trainer = {} as Trainer;
-  nicknameControl = new FormControl('', [Validators.required, Validators.maxLength(30)]);
-  fullNameControl = new FormControl('', [Validators.required, Validators.maxLength(60)]);
-  emailControl = new FormControl('', [Validators.required, Validators.email, Validators.maxLength(60)]);
-  birthdateControl = new FormControl('', [Validators.required]);
-  cpfControl = new FormControl('', [Validators.required, Validators.maxLength(11)]);
-  cnpjControl = new FormControl('', [Validators.required, Validators.maxLength(12)]);
-  cellphoneControl = new FormControl('', [Validators.required, Validators.maxLength(11)]);
-  zoomAccountControl = new FormControl('', [Validators.required, Validators.email]);
+  trainers = [];
 
-  constructor(private trainerService : TrainerService) { }
+  alert: IAlert;
+  showAlert;
+
+  model = {
+    left: true,
+    middle: false,
+    right: false
+  };
+
+  focus;
+  focus1;
+
+  constructor(private trainerService : TrainerService) { 
+    this.getAllTrainers();
+  }
   
   ngOnInit(): void { }
   
@@ -34,92 +40,50 @@ export class TrainerComponent implements OnInit {
       });
   }
   
-  getTrainerByName(name: string) {
-    this.trainerService
-      .getTrainerByName(name)
-      .subscribe(trainer => this.trainer = trainer);
-  }
+  // getTrainerByName(name: string) {
+  //   this.trainerService
+  //     .getTrainerByName(name)
+  //     .subscribe(trainer => this.trainer = trainer);
+  // }
   
-  saveTrainer(trainer: Trainer) {
+  save() {
     this.trainerService
-      .saveTrainer(trainer)
-      .subscribe(_ => {
-        this.trainer = _;
+      .saveTrainer(this.trainer)
+      .toPromise()
+      .then(() => {
+        this.showSucessAlert();
+      })
+      .catch(error => {
+        this.showErrorAlert(error.message);
       });
   }
 
-  save(nickname: string, fullname: string, birthdate: string, email: string, cpf: number, cnpj: number, cellphone: number, zoomAccount: string) {
-    const trainer = {} as Trainer;
-    trainer.nickname = nickname;
-    trainer.fullName = fullname;
-    trainer.birthdate = birthdate;
-    trainer.email = email;
-    trainer.cpf = cpf;
-    trainer.cnpj = cnpj;
-    trainer.cellphone = cellphone;
-    trainer.zoomAccount = zoomAccount;
-
-    this.saveTrainer(trainer);
+  showSucessAlert() {
+    const successAlert: IAlert = {
+      type: 'success',
+      strong: 'Successo!',
+      message: `O Profissional ${this.trainer.fullName} foi salvo com sucesso!`,
+      icon: 'ni ni-like-2'
+    };
+    
+    this.alert = successAlert;
+    this.showAlert = true;
   }
-
-  getEmailErrorMessages() {
-    return `
-      ${this.getRequiredErrorMessage(this.emailControl, 'e-mail')} / 
-      ${this.getEmailValidatorMessage(this.emailControl, 'e-mail')}
-    `;
+  
+  showErrorAlert(message: string) {
+    const errorAlert: IAlert = {
+      type: 'danger',
+      strong: 'Não foi possível salvar!',
+      message: `${message}`,
+      icon: 'ni ni-support-16'
+    };
+    
+    this.alert = errorAlert;
+    this.showAlert = true;
   }
-
-  getNicknameErrorMessages() {
-    return `
-      ${this.getRequiredErrorMessage(this.nicknameControl, 'apelido')}
-    `;
-  }
-
-  getFullNameErrorMessages() {
-    return `
-      ${this.getRequiredErrorMessage(this.fullNameControl, 'nome completo')}
-    `;
-  }
-
-  getBirthdateErrorMessages() {
-    return `
-      ${this.getRequiredErrorMessage(this.birthdateControl, 'data de nascimento')}
-    `;
-  }
-
-  getCpfErrorMessages() {
-    return `
-      ${this.getRequiredErrorMessage(this.cpfControl, 'CPF')}
-    `;
-  }
-
-  getCnpjErrorMessages() {
-    return `
-      ${this.getRequiredErrorMessage(this.cnpjControl, 'CNPJ')}
-    `;
-  }
-
-  getCellphoneErrorMessages() {
-    return `
-      ${this.getRequiredErrorMessage(this.cellphoneControl, 'celular')}
-    `;
-  }
-
-  getZoomAccountErrorMessages() {
-    return `
-      ${this.getRequiredErrorMessage(this.zoomAccountControl, 'conta do Zoom')} / 
-      ${this.getEmailValidatorMessage(this.zoomAccountControl, 'conta do Zoom')}
-    `;
-  }
-
-
-
-
-  getRequiredErrorMessage(formControl: FormControl, formControlName: string) {
-    return formControl.hasError('required') ? `Por favor insira um(a) ${formControlName} válido(a)'` : '';
-  }
-
-  getEmailValidatorMessage(formControl: FormControl, formControlName: string) {
-    return formControl.hasError('email') ? `${formControlName} inválido(a)` : '';
+  
+  closeAlert() {
+    this.alert = null;
+    this.showAlert = false;
   }
 }

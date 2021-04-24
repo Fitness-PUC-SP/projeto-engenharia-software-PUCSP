@@ -1,14 +1,22 @@
 package br.edu.pucsp.virtualtrainer.transport.request;
 
+import java.time.LocalDate;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import br.edu.pucsp.virtualtrainer.validator.Cpf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.*;
-import java.time.LocalDate;
-
 @ApiModel(value = "StudentRequest", description = "Transport class for Student")
 public class StudentRequest {
+
+    @ApiModelProperty(name = "id")
+    private Long id;
 
     @ApiModelProperty(name = "nickname")
     @NotEmpty(message = "The nickname cannot be null or empty")
@@ -20,9 +28,9 @@ public class StudentRequest {
     @Size(min = 3, max = 100, message = "A full name should have between 3 and 100 characters")
     private String fullName;
 
-    @ApiModelProperty(name = "birthdate")
+    @ApiModelProperty(name = "birthDate")
     @Past(message = "This is not a valid date of birth")
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     @ApiModelProperty(name = "cpf")
     @Positive(message = "Invalid CPF number")
@@ -41,6 +49,14 @@ public class StudentRequest {
     @ApiModelProperty(name = "zoomAccount")
     @Email(message = "This is not a valid email")
     private String zoomAccount;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNickname() {
         return nickname;
@@ -66,12 +82,12 @@ public class StudentRequest {
         this.cpf = cpf;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getEmail() {
