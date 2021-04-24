@@ -8,11 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 @Entity
 public class Student {
     
@@ -26,8 +21,8 @@ public class Student {
     @Column(nullable = false, length = 60, name = "full_name")
     private String fullName;
 
-    @Column(nullable = false)
-    private LocalDate birthdate;
+    @Column(nullable = false, name = "birth_date")
+    private LocalDate birthDate;
 
     @Column(nullable = false, unique = true)
     private Long cpf;
@@ -47,4 +42,78 @@ public class Student {
     public Student() {
         this.active = true;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthdate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getCellphone() {
+        return cellphone;
+    }
+
+    public void setCellphone(Long cellphone) {
+        this.cellphone = cellphone;
+    }
+
+    public String getZoomAccount() {
+        return zoomAccount;
+    }
+
+    public void setZoomAccount(String zoomAccount) {
+        this.zoomAccount = zoomAccount;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    
 }

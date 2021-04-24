@@ -7,8 +7,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-15T01:32:34-0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
+    date = "2021-04-23T22:16:31-0300",
+    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.3.1200.v20200916-0645, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 public class StudentMapperImpl implements StudentMapper {
 
@@ -19,6 +19,14 @@ public class StudentMapperImpl implements StudentMapper {
         }
 
         Student student = new Student();
+
+        student.setId( studentDto.getId() );
+        student.setNickname( studentDto.getNickname() );
+        student.setFullName( studentDto.getFullName() );
+        student.setCpf( studentDto.getCpf() );
+        student.setEmail( studentDto.getEmail() );
+        student.setCellphone( studentDto.getCellphone() );
+        student.setZoomAccount( studentDto.getZoomAccount() );
 
         return student;
     }
@@ -31,6 +39,15 @@ public class StudentMapperImpl implements StudentMapper {
 
         StudentDto studentDto = new StudentDto();
 
+        studentDto.setId( student.getId() );
+        studentDto.setNickname( student.getNickname() );
+        studentDto.setFullName( student.getFullName() );
+        studentDto.setBirthDate( student.getBirthDate() );
+        studentDto.setCpf( student.getCpf() );
+        studentDto.setEmail( student.getEmail() );
+        studentDto.setCellphone( student.getCellphone() );
+        studentDto.setZoomAccount( student.getZoomAccount() );
+
         return studentDto;
     }
 
@@ -41,6 +58,14 @@ public class StudentMapperImpl implements StudentMapper {
         }
 
         Student student = new Student();
+
+        student.setId( request.getId() );
+        student.setNickname( request.getNickname() );
+        student.setFullName( request.getFullName() );
+        student.setCpf( request.getCpf() );
+        student.setEmail( request.getEmail() );
+        student.setCellphone( request.getCellphone() );
+        student.setZoomAccount( request.getZoomAccount() );
 
         return student;
     }

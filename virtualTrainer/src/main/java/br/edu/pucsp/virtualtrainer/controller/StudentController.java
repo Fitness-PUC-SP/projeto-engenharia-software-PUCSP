@@ -2,6 +2,8 @@ package br.edu.pucsp.virtualtrainer.controller;
 
 import br.edu.pucsp.virtualtrainer.service.StudentService;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
+import br.edu.pucsp.virtualtrainer.transport.response.StudentListResponse;
+import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
 import br.edu.pucsp.virtualtrainer.transport.response.StudentResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -23,22 +25,28 @@ public class StudentController {
     }
 
     @ApiOperation(value = "Insert a Student into the database")
-    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes =APPLICATION_JSON_VALUE)
+    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void createStudent(@RequestBody @Valid StudentRequest request) {
         studentService.createStudent(request);
     }
 
     @ApiOperation(value = "Find a Student from the database")
-    @GetMapping(path = "/{studentId}")
+    @GetMapping(path = "/id/{studentId}")
     public StudentResponse getStudent(@PathVariable Long studentId) {
         return new StudentResponse(studentService.findStudent(studentId));
     }
 
+    @ApiOperation(value = "Find a Student by name")
+    @GetMapping(path = "/name/{studentName}")
+    public StudentListResponse getStudents(@PathVariable String studentName){
+        return new StudentListResponse(studentService.findStudents(studentName));
+    }
+
     @ApiOperation(value = "Update a Student in the database")
-    @PutMapping(path = "/{studentId}")
-    public void updateStudent(@RequestBody @Valid StudentRequest request, @PathVariable Long studentId) {
-        studentService.updateStudent(request, studentId);
+    @PutMapping(path = "")
+    public void updateStudent(@RequestBody @Valid StudentUpdateRequest request) {
+        studentService.updateStudent(request);
     }
 
     @ApiOperation(value = "Delete (deactivate) a Student from the database")
@@ -46,6 +54,5 @@ public class StudentController {
     public void deleteStudent(@PathVariable Long studentId) {
         studentService.deleteStudent(studentId);
     }
-
 }
 
