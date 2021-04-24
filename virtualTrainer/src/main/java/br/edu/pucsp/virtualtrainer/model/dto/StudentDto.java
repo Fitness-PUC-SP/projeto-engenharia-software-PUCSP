@@ -3,6 +3,8 @@ package br.edu.pucsp.virtualtrainer.model.dto;
 import java.time.LocalDate;
 
 public class StudentDto {
+    private Long id;
+
     private String nickname;
 
     private String fullName;
@@ -16,6 +18,14 @@ public class StudentDto {
     private Long cellphone;
 
     private String zoomAccount;
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
 
     public String getNickname() {
         return nickname;

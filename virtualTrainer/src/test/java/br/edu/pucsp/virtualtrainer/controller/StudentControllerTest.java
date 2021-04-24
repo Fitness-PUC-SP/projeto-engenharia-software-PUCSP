@@ -1,6 +1,9 @@
 package br.edu.pucsp.virtualtrainer.controller;
 
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -19,6 +22,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
 import br.edu.pucsp.virtualtrainer.service.StudentServiceImpl;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
@@ -133,6 +137,18 @@ public class StudentControllerTest extends AbstractControllerTest {
 
         mvc.perform(get(STUDENT_URL + id).content(json).contentType(APPLICATION_JSON))
            .andExpect(status().isMethodNotAllowed());
+    }
+
+    @Test
+    public void whenUpdatingStudent_shouldGetNotFoundException() throws Exception {
+        StudentRequest request = getStudentRequest();
+        Long id = Long.MAX_VALUE;
+        String json = getJson(request);
+
+        doThrow(new DataNotFoundException(id)).when(studentService).updateStudent(any(StudentRequest.class), anyLong());
+
+        mvc.perform(put(STUDENT_URL + id).content(json).contentType(APPLICATION_JSON))
+           .andExpect(status().isNotFound());
     }
 
     @Test
