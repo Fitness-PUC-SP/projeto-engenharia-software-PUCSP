@@ -231,7 +231,7 @@ class TrainerControllerTest extends AbstractControllerTest {
         trainerDto.setNickname(NICKNAME);
         trainerDto.setFullName(FULL_NAME);
         trainerDto.setCpf(CPF);
-        trainerDto.setBirthDate(LocalDate.MIN);
+        trainerDto.setBirthdate(LocalDate.MIN);
         trainerDto.setCellphone(CELLPHONE);
         trainerDto.setEmail(EMAIL);
         trainerDto.setZoomAccount(EMAIL);

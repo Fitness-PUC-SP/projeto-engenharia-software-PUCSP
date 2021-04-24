@@ -1,8 +1,10 @@
+import { ActivatedRoute } from '@angular/router';
 import { Trainer } from './../../models/trainer/trainer';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { IAlert } from 'src/app/sections/alerts-section/alerts-section.component';
 import { TrainerService } from "src/app/services/trainer/trainer.service";
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-trainers',
   templateUrl: './trainers.component.html',
@@ -37,18 +39,12 @@ export class TrainersComponent implements OnInit {
         this.trainers = result.trainers;
       });
   }
-  
-  // getTrainerByName(name: string) {
-  //   this.trainerService
-  //     .getTrainerByName(name)
-  //     .subscribe(trainer => this.trainer = trainer);
-  // }
-  
+   
   showSucessAlert() {
     const successAlert: IAlert = {
       id: 1,
       type: 'success',
-      strong: 'Successo!',
+      strong: 'Sucesso!',
       message: `Profissionais carregados com sucesso!`,
       icon: 'ni ni-like-2'
     };

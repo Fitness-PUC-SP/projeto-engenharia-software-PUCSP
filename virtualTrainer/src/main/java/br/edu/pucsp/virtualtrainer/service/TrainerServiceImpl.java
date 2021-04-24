@@ -10,6 +10,8 @@ import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerFieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
 import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.transport.request.TrainerUpdateRequest;
+
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
@@ -76,12 +78,12 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
-    public void updateTrainer(TrainerRequest request, Long trainerId) {
-        Trainer trainer = repository.findById(trainerId)
-                .orElseThrow(() -> new DataNotFoundException(trainerId));
-        trainer.setNickname(request.getNickname());
-        trainer.setFullName(request.getFullName());
-        trainer.setBirthdate(request.getBirthdate());
+    public void updateTrainer(TrainerUpdateRequest request) {
+        Trainer trainer = repository.findById(request.getId())
+                .orElseThrow(() -> new DataNotFoundException(request.getId()));
+        // trainer.setNickname(request.getNickname());
+        // trainer.setFullName(request.getFullName());
+        // trainer.setBirthdate(request.getBirthdate());
         trainer.setEmail(request.getEmail());
         trainer.setZoomAccount(request.getZoomAccount());
         trainer.setCellphone(request.getCellphone());

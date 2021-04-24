@@ -73,8 +73,9 @@ export class StudentComponent implements OnInit {
 
           const studentBirthdate = new Date(Date.parse(student.birthdate));
           const ano = studentBirthdate.getFullYear();
-          const mes = studentBirthdate.getMonth() > 10 ? studentBirthdate.getMonth() : `0${studentBirthdate.getMonth()}`;
-          const dia = studentBirthdate.getDay() > 10 ? studentBirthdate.getDay() : `0${studentBirthdate.getDay()}`;
+          const correctMonth = (studentBirthdate.getMonth() + 1);
+          const mes = correctMonth > 10 ? correctMonth : `0${correctMonth}`;
+          const dia = studentBirthdate.getDate() > 10 ? studentBirthdate.getDate() : `0${studentBirthdate.getDate()}`;
           const studentBirthdateToString = `${ano}-${mes}-${dia}`;
           this.birthdateControl.setValue(studentBirthdateToString);
           
