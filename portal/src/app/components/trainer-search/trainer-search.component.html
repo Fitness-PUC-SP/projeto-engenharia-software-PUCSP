@@ -1,0 +1,16 @@
+<div class="form-group" [ngClass]="{'focused':focus1===true}">
+    <div class="input-group input-group-alternative mb-4">
+        <div class="input-group-prepend">
+        <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+        </div>
+        <input class="form-control" placeholder="Pesquisar Profissional" type="text" #trainerSearchBox id="trainer-search-box" 
+            (focus)="focus1=true" (blur)="focus1=false" (input)="search(trainerSearchBox.value)">
+
+        <ul class="search-result">
+    
+            <!-- <li *ngFor="let trainer of trainer$ | async">
+                <a routerLink="/trainer/{{trainer.cpf}}">{{trainer.fullName}}</a>
+            </li> -->
+        </ul>
+    </div>
+</div>

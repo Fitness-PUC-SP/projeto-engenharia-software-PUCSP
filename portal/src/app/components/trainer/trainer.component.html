@@ -18,95 +18,88 @@
         <div class="col px-0">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-9 text-center">
+              
+              <form role="form">
 
-              <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative mb-4">
-                  <!-- <div class="input-group-append">
-                    <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                  </div> -->
-                  <input autofocus [(ngModel)]="trainer.nickname" required class="form-control" placeholder="Apelido" type="text" (focus)="focus1=true" (blur)="focus1=false">
-                </div>
-              </div>
+                <!-- <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-4"> -->
 
-              <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative mb-4">
-                  <!-- <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                  </div> -->
-                  <input [(ngModel)]="trainer.fullName" required class="form-control" placeholder="Nome completo" type="text" (focus)="focus1=true" (blur)="focus1=false">
-                </div>
-              </div>
-
-              <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative mb-4">
-                  <!-- <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email"></i></span>
-                  </div> -->
-                  <input [(ngModel)]="trainer.email" required class="form-control" placeholder="E-mail" type="email" (focus)="focus1=true" (blur)="focus1=false">
-                </div>
-              </div>
-
-              <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-4">
+                    <input autofocus required class="form-control" placeholder="Apelido" type="text"
+                      [formControl]="nicknameControl" (focus)="focus1=true" (blur)="focus1=false">
                   </div>
-                  <!-- <input [(ngModel)]="trainer.birthdate" class="form-control datepicker" placeholder="Data de nascimento" name="dp" ngbDatepicker #d="ngbDatepicker"
-                    (click)="d.toggle()" (focus)="focus1=true" (blur)="focus1=false" type="text" (select)="onDateSelection($event)" autocomplete="off" min="1900-01-01"/> -->
-                  <input [(ngModel)]="trainer.birthdate" class="form-control datepicker" placeholder="Data de nascimento" name="dp" (click)="d.toggle()" 
-                    (focus)="focus1=true" (blur)="focus1=false" type="text" (select)="onDateSelection($event)" autocomplete="off" min="1900-01-01"/>
                 </div>
-              </div>
 
-              <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative mb-4">
-                  <!-- <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                  </div> -->
-                  <input [(ngModel)]="trainer.cpf" required class="form-control" placeholder="CPF" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-4">
+                    <input required class="form-control" placeholder="Nome completo" type="text"
+                      [formControl]="fullNameControl" (focus)="focus1=true" (blur)="focus1=false">
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative mb-4">
-                  <!-- <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                  </div> -->
-                  <input [(ngModel)]="trainer.cnpj" required class="form-control" placeholder="CNPJ" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-4">
+                    <input required class="form-control" placeholder="E-mail" type="text" 
+                      [formControl]="emailControl" (focus)="focus1=true" (blur)="focus1=false">
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative mb-4">
-                  <!-- <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                  </div> -->
-                  <input [(ngModel)]="trainer.cellphone" required class="form-control" placeholder="Celular" type="tel" (focus)="focus1=true" (blur)="focus1=false">
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                    </div>
+                    <!-- <input [(ngModel)]="student.birthdate" required class="form-control datepicker" placeholder="Data de nascimento" name="dp" ngbDatepicker #d="ngbDatepicker" 
+                      (click)="d.toggle()" (focus)="focus1=true" (blur)="focus1=false" type="text" (select)="onDateSelection($event)" autocomplete="off"/> -->
+                    <input required class="form-control datepicker" placeholder="Data de nascimento" name="dp" (click)="d.toggle()" 
+                      [formControl]="birthdateControl" (focus)="focus1=true" (blur)="focus1=false" type="text" (select)="onDateSelection($event)" autocomplete="off"/>
+                    </div>
                 </div>
-              </div>
 
-              <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative mb-4">
-                  <!-- <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                  </div> -->
-                  <input [(ngModel)]="trainer.zoomAccount" class="form-control" placeholder="Conta no zoom" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-4">
+                    <input required class="form-control" placeholder="CPF" type="text" [disabled]="cpfEnabled"
+                      [formControl]="cpfControl" (focus)="focus1=true" (blur)="focus1=false">
+                  </div>
                 </div>
-              </div>
 
-              <button (click)="save()" class="btn btn-icon btn-3 btn-neutral" type="button">
-                <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
-                <span class="btn-inner--text">Salvar</span>
-              </button>
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-4">
+                    <input required class="form-control" placeholder="CNPJ" type="text" [disabled]="cnpjEnabled"
+                      [formControl]="cnpjControl" (focus)="focus1=true" (blur)="focus1=false">
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-4">
+                    <input required class="form-control" placeholder="Celular" type="text" 
+                      [formControl]="cellphoneControl" (focus)="focus1=true" (blur)="focus1=false">
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-4">
+                    <input class="form-control" placeholder="Conta no zoom" type="text" 
+                      [formControl]="zoomAccountControl" (focus)="focus1=true" (blur)="focus1=false">
+                  </div>
+                </div>
+
+                <button (click)="save()" class="btn btn-icon btn-3 btn-neutral" type="submit">
+                  <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
+                  <span class="btn-inner--text">Salvar</span>
+                </button>
+
+              </form>
 
               <div *ngIf="showAlert">
-                <ngb-alert [type]="alert.type"  [dismissible]="true" (close)="closeAlert()" >
+                <ngb-alert [type]="alert.type"  [dismissible]="true"  (close)="closeAlert()" >
                   <ng-container *ngIf="alert.icon">
                     <div class="alert-inner--icon">
                         <i class="{{alert.icon}}"></i>
                     </div>
                   </ng-container>
-                  <span class="alert-inner--text">  <strong>{{alert.strong}} </strong>{{alert.message}}</span>
+                  <span class="alert-inner--text">  <strong>{{alert.strong}} </strong>{{ alert.message }}</span>
                 </ngb-alert>
               </div>
                               
@@ -114,12 +107,15 @@
           </div>
         </div>
       </div>
+      
       <!-- SVG separator -->
       <div class="separator separator-bottom separator-skew zindex-100">
         <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
+        </svg>            
       </div>
     </section>
   </div>
 </main>
+
+

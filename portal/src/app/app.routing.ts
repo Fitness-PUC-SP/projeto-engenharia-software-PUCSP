@@ -28,8 +28,10 @@ const routes: Routes =[
     { path: 'student', component: StudentComponent },
     { path: 'student/:id', component: StudentComponent },
     { path: 'trainer', component: TrainerComponent },
+    { path: 'trainer/:id', component: TrainerComponent },
     { path: 'trainers', component: TrainersComponent },
-    { path: '', redirectTo: 'login', pathMatch: 'full' }
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+
 ];
 
 @NgModule({
